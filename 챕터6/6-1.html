@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            float: left;
+            width: 80px;
+
+        }
+        input,label{
+            display: block;
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <form name="frm">
+        <label for="myId">ID:</label>
+        <input type="text" id="myId" name="myId">
+        <label for="pwd">password:</label>
+        <input type="password" id="pwd" name="pwd">
+
+        <input type="button" name="send" value="로그인">
+    </form>
+   
+</body>
+<script>
+    let frm=document.frm;
+    let myId=frm.myId;
+    let pwd=frm.pwd;
+    let sendBtn=document.frm.send;
+    sendBtn.onclick=function(){
+        let newId=myId.value;
+        let newPw=pwd.value;
+        if(newId == '' || newPw==''){
+            alert('아이디 또는 비번이 입력되지 않앗습니다.');
+        }else{
+            alert(myId.value+'님 환영합니다.');
+        }
+    }
+
+</script>
+</html>

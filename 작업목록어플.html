@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn{
+            padding: 5px 10px;
+            border:0;
+            background: #f80; color:white;
+            border-radius: 5px;
+        }
+        ul{
+            padding: 0;
+            list-style-position: inside;
+        }
+        li{
+            border-bottom: 1px solid #999;
+            padding:5px 0;
+        }
+        .active{
+            background: #abc;
+        }
+
+    </style>
+</head>
+<body>
+<h1 id="title"> 할일 목록</h1>
+<button id="btn">할일추가</button>
+        <ul id="list">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+
+</body>
+<script>
+var title=document.getElementById('title');
+var btn=document.getElementById('btn');
+var list=document.getElementById('list');
+var li=list.getElementsByTagName('li');
+console.log(list);
+
+list.addEventListener('click',activeItem);
+
+function activeItem(event){
+    console.log(event.target);
+    if(event.target.nodeName=='LI'){
+        title.innerHTML=event.target.innerText;
+    }
+
+    for(var i=0;i<event.target.parentNode.children.length;i++){
+        event.target.parentNode.children[i].removeAttribute('class');
+    }
+    event.target.setAttribute('class','active');
+}
+btn.addEventListener('click',function(){
+    var txt=prompt('입력');
+    list.innerHTML+="<li>"+txt+"</li>";
+});
+
+
+</script>
+</html>

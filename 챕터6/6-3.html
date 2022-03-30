@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="gnb">
+        <li>click</li>
+        <li>second</li>
+        <li>third</li>
+
+    </ul>
+</body>
+<script>
+    let gnb=document.getElementById('gnb');
+    let li=gnb.getElementsByTagName('li');
+    li[0].onclick=function(){
+        this.style.background='tomato';
+    }
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>나이 계산기</h1>
+    <label for="age">출생한 연도입력</label>
+    <input type="text" id="age" name="age">
+    <input type="button" value="확인" onclick="age()">
+
+</body>
+    <script>
+        function age(){
+            let year=new Date().getFullYear();
+            console.log();
+            let birth=document.getElementById('age').value;
+            console.log(year-birth);
+            alert("당신의 나이는"+(year-birth+1)+"살 입니다");
+        }
+
+    </script>
+</html>

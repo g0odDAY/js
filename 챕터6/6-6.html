@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="frm">
+        <p>다음 빈칸에 올바른 값을 입력하세요</p>
+        <input type="text" name="a1" size="3" value="9">+
+        <input type="text" name="a2" size="3" value="3">=
+        <input type="text" name="answer" size="3" value="9">
+        <br><br>
+        <input type="button" onclick="result()" value="확인">
+    </form>
+</body>
+<script>
+    function result() {
+        let frm = document.forms['frm'];
+        console.log(frm);
+        let input = frm.getElementsByTagName('input');
+        console.log(parseInt(input[0].value)+parseInt(input[1].value));
+        if(parseInt(input[0].value)+parseInt(input[1].value) === parseInt(input[2].value)){
+            alert('정답입니다.');
+        }else{
+            alert('틀렷어요');
+        }
+    }
+</script>
+
+</html>

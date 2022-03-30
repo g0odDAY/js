@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head><title>중복입력값체크.jsp</title>
+<style>
+[name="no"] { width: 30px; margin: 0px 5px 0px 0px;}
+</style>
+
+</head>
+<body>
+<form id="frm" name="frm">
+<div>
+    <span>번호</span> <span>이름</span>
+</div>
+<div>
+    <input name="no" value="1"><input name="name" value="김"/>
+</div>
+<div>
+    <input name="no" value="2"><input name="name" value="이"/>
+</div>
+<div>
+    <input name="no" value="3"><input name="name" value="이"/>
+</div>
+<div>
+    <input name="no" value="4"><input name="name" value="박"/>
+</div>
+<div>
+    <button type="button" id="btnIns">등록</button>
+</div>
+</form>
+</body>
+<script>
+    window.addEventListener("load", function(){
+    btnInsCheck();
+    });
+    function btnInsCheck(){
+    btnIns.addEventListener("click", function(){
+    var nos = document.getElementsByName("no");
+    var names = document.getElementsByName("name");
+
+    Array.from(Array(2), () => new Array(4));
+    var arr = Array.from(Array(4), () => new Array(2));
+    for(var i=0;i<arr.length;i++){
+        arr[i][0]=nos[i].value;
+        arr[i][1]=names[i].value;
+    }
+    //중복값 체크: 입력된 이름중에 중복된 이름이 있으면 경고창을 출력하고 리턴
+   console.log(arr.length);
+   var temp=[];
+   for(var i=0;i<arr.length;i++){
+       temp.push(arr[i][1]);
+
+   }
+   console.log(temp);
+   const set=new Set(temp);
+   console.log(set.size);
+   if(set.size != arr.length){
+       alert('중복값 존재');
+   }
+    //배열에 담기 :
+   // var arr = [];
+ 
+    //배열 출력
+    console.log(JSON.stringify(arr));
+    });
+    }
+    </script>
+</html>

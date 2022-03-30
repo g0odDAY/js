@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="txtWord"><button type="button" id="btnAdd">추가</button>
+    <div id="list">
+        <div><span class="fruit">사과</span><span class="close">X</span></div>
+    </div>
+
+    <script>
+        let datas = ["바나나", "키위", "포도"];
+        datas.forEach(function (fruit) {
+            let div = document.createElement('div');
+            let span = document.createElement('span');
+            let span1 = document.createElement('span');
+            span.setAttribute('class', 'fruit');
+            span.textContent = fruit;
+            span1.setAttribute('class', 'close');
+            span1.textContent = "X";
+            div.append(span);
+            div.append(span1);
+            list.append(div);
+        });
+        btnAdd.addEventListener('click', function () {
+            console.log(txtWord.value);
+            datas[datas.length + 1] = txtWord.value;
+                let div = document.createElement('div');
+                let span = document.createElement('span');
+                let span1 = document.createElement('span');
+                span.setAttribute('class', 'fruit');
+                span.textContent = txtWord.value;
+                span1.setAttribute('class', 'close');
+                span1.textContent = "X";
+                div.append(span);
+                div.append(span1);
+                list.append(div);           
+        });
+        list.addEventListener('click', function (fruit) {
+            if (event.target.classList.contains('fruit')) {
+                alert(event.target.innerText);
+            } else if (event.target.classList.contains('close')) {
+                event.target.parentNode.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>

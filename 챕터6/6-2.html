@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form name="frm">
+        <input type="text" name="text">
+        <input type="button" onclick="putText()" value="click">
+
+    </form>
+</body>
+<script>
+    function putText(){
+        let frm=document.forms['frm']['text'];
+        frm.value='값을입력';
+    }
+</script>
+</html>

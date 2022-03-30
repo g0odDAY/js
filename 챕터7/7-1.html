@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+    crossorigin="anonymous"></script>
+    
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <h1>light box</h1>
+        <img class="thumb" src="./img/1.png" width="100" onclick="lightBoxOpen(1)"/>
+        <img class="thumb" src="./img/2.png" width="100" onclick="lightBoxOpen(2)"/>
+        <img class="thumb" src="./img/3.png" width="100" onclick="lightBoxOpen(3)"/>
+    </header>
+
+    <div id="block"></div>
+
+    <div id="lightbox">
+        <h1>박물관에서 사라진 아빠를 찾아서</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Unde veniam a iste, minima facere sunt quasi officiis possimus vero sapiente. Ad eius nulla unde perferendis perspiciatis laborum ullam recusandae modi!</p>
+        <figure>
+            <img src="./img/1.png" class="active" alt=""/>
+            <img src="./img/2.png"  alt=""/>
+            <img src="./img/3.png"  alt=""/>
+        </figure>
+        <div class="indicator">
+            <button onclick="changeImage(this.innerHTML)">1</button>
+            <button onclick="changeImage(this.innerHTML)">2</button>
+            <button onclick="changeImage(this.innerHTML)">3</button>
+        </div>
+        <div class="btnClose" onclick="lightBoxClose()">X</div>
+    </div>
+</body>
+<script>
+    var $indicator = $('.indicator button');
+    var $lightbox = $('#lightbox');
+    var $block = $('#block');
+    console.log($indicator);
+    //라이트박스 표시
+    function lightBoxOpen(num){
+        $lightbox.addClass('active');
+        $block.addClass('active');
+        changeImage(num);
+        $indicator.eq(num).focus();
+    }
+    //라이트박스 종료
+    function lightBoxClose(){
+        $lightbox.removeAttr('class');
+        $block.removeAttr('class');
+    }
+    //이미지 전환표시함수
+    function changeImage(val){
+        var $img = $('figure > img');
+        for (let i =0;i<$img.length;i++){
+            $img.eq(i).removeAttr('class');
+        }
+        $img.eq(val).attr('class','active');
+    }
+
+    $('img.thumb').click(function(){
+        var img_num = $(this).index()-1;
+        console.log(img_num);
+        lightBoxOpen(img_num);
+    });
+    $('.btnClose').click(function(){
+        lightBoxClose();
+    })
+    $indicator.click(function(){
+        let img_num1=$(this).index();
+        console.log(img_num1);
+        changeImage(img_num1);
+    })
+</script>
+</html>

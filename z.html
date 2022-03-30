@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>문자열자르기</title>
+
+
+</head>
+
+<body>
+    <select id="multipleSelect" multiple="multiple">
+        <option value="abc">Text 1</option>
+        <option value="def">Text 2</option>
+        <option value="ghi">Text 3</option>
+    </select>
+</body>
+<script>
+    var selected=[];
+ $('#multipleSelect :selected').each(function(){
+     selected[$(this).val()]=$(this).text();
+    });
+    var select_button_text = $('#SelectQButton option:selected')
+                .toArray().map(item => item.text);
+console.log(selected);
+</script>
+</html>
