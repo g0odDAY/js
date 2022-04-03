@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+
+<script> 
+var newDt=new Date();
+console.log(newDt.getTime());  
+//현재 날짜에서 8일 정도 빼기
+var dateOffset = (24*60*60*1000) * 8; //8 days
+  var myDate = new Date();
+
+  myDate.setTime(myDate.getTime() - dateOffset);
+  var year=myDate.getFullYear();
+  var month=myDate.getMonth()+1;
+  var date=myDate.getDate();
+  if(date < 10 ) {
+    date='0'+ date
+     } else{
+      date='' + date
+     }; 
+     if(month < 10 ) {
+         month='0'+ month
+     } else{
+         month='' + month
+     }; 
+    let now=String(year)+String(month)+String(date);
+</script>
+</html>
