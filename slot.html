@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata');
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: radial-gradient(circle at 33% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+  font-family: 'Inconsolata';
+  font-weight: bold;
+  font-size: 16vmin;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+  fill: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+</style>
+<body>
+    <div class="js-slot"></div>
+</body>
+<script>
+   slot.default({
+  el: ".js-slot",
+  from: "where?",
+  to: "yedam",
+  animationDelay: 1000
+});
+</script>
+</html>

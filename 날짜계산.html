@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .out{
+            background-color: black;
+        }
+
+    </style>
+</head>
+<body>
+    <ul id="list">
+        
+    </ul>
+</body>
+<script>
+    ////
+    let aaa=new Date(1650083829000);
+    console.log(aaa);
+   /* var timestamp = 1650093240000;
+    let timeStr=new Date();
+    console.log(timeStr);////
+    console.log(timeStr.getTime());
+    if(timeStr.getTime() > timestamp){
+        console.log('상영시간지남');
+    }else{
+        console.log('상영시간 아직안지남');
+    }*/
+    ////
+    let date=new Date();
+    date.setHours(9,0,0,0);
+    let tmp=date;
+    for(var i = 0;i<6;i++){  
+    let time = new Date(tmp.getTime()+(6480)*1000);
+   // console.log('tmp'+tmp);
+   // console.log('tmp를 초로바꾼거'+tmp.getTime());
+    let startHours = tmp.getHours();
+    if (startHours < 10 ) {
+        startHours = '0'+ startHours;
+    } else{
+        startHours = '' + startHours;
+    }; 
+    let startMinutes=tmp.getMinutes();
+    if (startMinutes < 10 ) {
+        startMinutes='0'+ startMinutes;
+    } else{
+        startMinutes='' + startMinutes;
+    }; 
+    let endtHours = time.getHours();
+    if (endtHours < 10 ) {
+        endtHours = '0'+ endtHours;
+    } else{
+        endtHours = '' + endtHours;
+    }; 
+    let endMinutes=time.getMinutes();
+    if (endMinutes < 10 ) {
+        endMinutes='0'+ endMinutes;
+    } else{
+        endMinutes='' + endMinutes;
+    };
+   // console.log(startHours+':'+startMinutes+' ~ '+endtHours+':'+endMinutes);
+    let li=document.createElement('li');
+    li.innerText=startHours+':'+startMinutes+' ~ '+endtHours+':'+endMinutes;
+    li.dataset.timestamp=tmp.getTime();
+    list.append(li);
+    tmp=new Date(time.getTime()+(1800)*1000);
+    }
+    let timeStr=new Date();
+        let Lst=document.getElementById('list');
+        let timeList=Lst.getElementsByTagName('li');
+        for(var i=0;i<timeList.length;i++){
+            if(timeStr.getTime() > timeList[i].getAttribute('data-timestamp')){
+                console.log('상영시간지남');
+                timeList[i].classList.add('out');
+            }else{
+                console.log('상영시간 아직안지남');
+            }
+        }
+
+</script>
+</html>

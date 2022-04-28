@@ -30,18 +30,14 @@ function drawMap(target) {
         .attr('height', height + 'px')
         .attr('id', 'map')
         .attr('class', 'map')
-        .on("click",function(){
-            var eid=event.target.id;
-            result.value=eid.substr(eid.indexOf('-')+1,eid.length);
-            $.ajax({
-                url:"",
-                type:"get",
-                data:{loc:"${'#result.'}.val()"},
-                success:function(data){
-                    console.log(data);
-                }
-            });
-        });
+        .on("click", function(){
+        let text = $('text');
+        for(var i=0;i<text.length;i++){
+            console.log(text[i].textContent+='(30)');
+        }
+        
+	
+      });
         
     var states = svg
         .append('g')
@@ -53,7 +49,6 @@ function drawMap(target) {
         .attr('class', 'background')
         .attr('width', width + 'px')
         .attr('height', height + 'px');
-        console.log(states);
 
     //geoJson데이터를 파싱하여 지도그리기
     d3.json('json/korea.json', function(json) {
@@ -64,7 +59,6 @@ function drawMap(target) {
             .append('path')
             .attr('d', path)
             .attr('id', function(d) {
-                console.log(d.properties.name_eng);
                 return 'path-' + d.properties.name_eng;
             });
         
@@ -75,7 +69,7 @@ function drawMap(target) {
             .append('text')
             .attr('transform', translateTolabel)
             .attr('id', function(d) {
-                return 'label-' + d.properties.name_eng;
+                return d.properties.name_eng;
             })
             .attr('text-anchor', 'middle')
             .attr('dy', '.35em')
@@ -108,4 +102,6 @@ function drawMap(target) {
         states.selectAll('path').attr('d', path);
         labels.attr('transform', translateTolabel);
     }
+
+
 }
