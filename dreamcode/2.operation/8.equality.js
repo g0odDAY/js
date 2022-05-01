@@ -26,3 +26,26 @@ console.log(obj2 == obj3);
 console.log(obj2 === obj3);
 console.log(obj1.name == obj3.name);
 console.log(obj2.name == obj3.name);
+
+function b(){
+    for(var i =0;i<10;i++){
+
+    }
+    return i;
+}
+console.log(b());
+console.log('*****************************************************************');
+function arrow(){
+    setTimeout(() => {
+        console.log(this);
+    },1000)
+}
+function not_arrow(){
+    setTimeout(function(){
+        console.log(this);
+    },1000)
+}
+
+const p1=new not_arrow();
+const p2=new arrow();
+console.log('*****************************************************************');
