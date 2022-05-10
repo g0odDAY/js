@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Kware Structured Data  Refiner</h1>
+<ol>
+  <li>
+  항목이 '|' 문자로 구분된 텍스트 데이터를 정제해 주세요~
+  </li>
+  <li>
+  데이터 중간에 들어가 있는 enter문자를 제거해야 합니다 -.- 
+  </li>
+  <li>enter문자는 여러 개가 연속으로 나올 수도 있습니다~!
+  </li>
+</ol>
+[정제 대상 데이터]<br/>
+<textarea id='org' cols="70" rows="17">
+사랑채한의원|서울특별시 중구 중림로 27 1층(중림동)|서상훈|병원
+송정한의원|서울특별시 
+강서구 송정로 58 2층(공항동)|김도희|의원
+의료생활
+협동
+조합나눔한의원(폐업)|서울특별시 동대문구 고산자로 441 3층|이명희|病院
+이화당한의원(폐업)|서울특별시 서초구 서래로5길 6(반포동)|
+김은혜
+|한의원
+좋은사람들성모안과의원|서울특별시 성동구 왕십리로 315 7층(행당동)|박성진|
+
+
+
+의원</textarea><br/>
+
+<!--
+<textarea id='org' cols="70" rows="15">
+|사랑채한의원|서울특별시 중구 중림로 27 1층(중림동)|서상훈|한의원|
+|송정한의원|서울특별시 
+강서구 송정로 58 2층(공항동)|김도희|한의원|
+|의료생활
+협동
+조합나눔한의원(폐업)|서울특별시 동대문구 고산자로 441 3층|이명희|한의원|
+|이화당한의원(폐업)|서울특별시 서초구 서래로5길 6(반포동)|
+김은혜
+|한의원|
+|좋은사람들성모안과의원|서울특별시 성동구 왕십리로 315 7층(행당동)|박성진|
+
+
+
+의원|</textarea><br/>
+-->
+<br/>
+[정제 결과 데이터]<br/>
+<textarea id='refined' cols="70" rows="12">
+사랑채한의원|서울특별시 중구 중림로 27 1층(중림동)|서상훈|병원
+송정한의원|서울특별시 강서구 송정로 58 2층(공항동)|김도희|의원
+의료생활협동조합나눔한의원(폐업)|서울특별시 동대문구 고산자로 441 3층|이명희|病院
+이화당한의원(폐업)|서울특별시 서초구 서래로5길 6(반포동)|김은혜|한의원
+좋은사람들성모안과의원|서울특별시 성동구 왕십리로 315 7층(행당동)|박성진|의원
+</textarea><br/>
+<br/>
+<ul>
+  <li><a href="http://kware.co.kr/" target="_blank">http://kware.co.kr</a>의 개발자 코딩 테스트 문제입니다~</li>
+<li>채용공고: <a href="https://www.rocketpunch.com/companies/kware/jobs" target="_blank">https://www.rocketpunch.com/companies/kware/jobs</a></li>
+</ul>
+</body>
+<script>
+    let t=`송정한의원|서울특별시 
+강서구 송정로 58 2층(공항동)|김도희|의원
+의료생활
+협동`;
+    let text=document.getElementById('org').value;
+    console.log(text.replace(/(\r\n|\n|\r)/gm, ''));
+</script>
+</html>
