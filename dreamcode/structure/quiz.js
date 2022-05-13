@@ -56,6 +56,11 @@ console.log(result3);
 
 const nums = [3, 16, 5, 25, 4, 34, 21];
 result=arryAvg(nums);
+/**
+ * 
+ * @param {*} arry 
+ * @returns 
+ */
 function arryAvg(arry){
     return arry.filter((num)=> num>5)
                .reduce((sum, value, _, arry)=>sum+value/arry.length,0);  
