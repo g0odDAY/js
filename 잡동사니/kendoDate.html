@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="https://demos.telerik.com/kendo-ui/multiviewcalendar/disabled-dates">
+    <style>html { font-size: 14px; font-family: Arial, Helvetica, sans-serif; }</style>
+    <title></title>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2022.2.510/styles/kendo.default-main-dark.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2022.2.510/js/jquery.min.js"></script>
+    
+    
+    <script src="https://kendo.cdn.telerik.com/2022.2.510/js/kendo.all.min.js"></script>
+    
+    
+
+</head>
+<body>
+    <div id="example" style="text-align: center;">
+      <div class="demo-section wide" style="display: inline-block;">
+          <h4>Disable weekends</h4>
+          <div id="weekend-calendar"></div>
+
+          <h4 style="margin-top:1em">Disable Federal Holidays in USA in 2015</h4>
+          <div id="national-holidays"></div>
+      </div>
+      <script>
+        $(document).ready(function() {
+            $("#weekend-calendar").kendoCalendar({
+                disableDates: ["SU","MO"]
+            });
+
+            $("#national-holidays").kendoMultiViewCalendar({
+                value: new Date("1/2/2015"),
+                dates: [
+                  new Date("1/1/2015"),
+                  new Date("1/19/2015"),
+                  new Date("2/16/2015"),
+                  new Date("4/16/2015"),
+                  new Date("5/10/2015"),
+                  new Date("5/25/2015"),
+                  new Date("6/21/2015"),
+                  new Date("7/3/2015"),
+                  new Date("9/7/2015"),
+                  new Date("10/12/2015"),
+                  new Date("11/11/2015"),
+                  new Date("11/26/2015"),
+                  new Date("11/27/2015"),
+                  new Date("12/25/2015")
+                ],
+                disableDates: function (date) {
+                    var dates = $("#national-holidays").data("kendoMultiViewCalendar").options.dates;
+                    if (date && compareDates(date, dates)) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            });
+
+            function compareDates(date, dates) {
+                for (var i = 0; i < dates.length; i++) {
+                    if (dates[i].getDate() == date.getDate() &&
+                        dates[i].getMonth() == date.getMonth() &&
+                        dates[i].getYear() == date.getYear()) {
+                      return true
+                    }
+                }
+            }
+        });
+
+        let today=new Date();
+        let yesterDay=today-1;
+        console.log(today.getDate(),'*******',yesterDay);
+      </script>
+</div>
+
+
+</body>
+</html>

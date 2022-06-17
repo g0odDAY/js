@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+    crossorigin=""/>
+     <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+    integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+    crossorigin=""></script>
+    <title>Document</title>
+    <style>
+       #map { height: 400px; } 
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+<script>
+    let map = L.map('map').setView([36.123930,128.183399], 15);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+    }).addTo(map);
+
+    let marker = L.marker([36.123930,128.183399]).addTo(map);
+
+    let circle = L.circle([36.123950,128.183499],{
+        color:'blue',
+        fillColor:'#f03',
+        fillOpacity:0.5,
+        radius:200
+    }).addTo(map);
+
+    marker.bindPopup("<b>hello world </b><br>i am a popup").openPopup();
+    circle.bindPopup("I am a circle").openPopup();
+
+    // let popup = L.popup()
+    //             .setLatLng([36.129139,128.189292])
+    //             .setContent("i am a standalone popup")
+    //             .openPopup(map);
+
+    // function onMapClick(e){
+    //     alert("u clicked the map at"+e.latlng);
+    // }
+    // map.on('click',onMapClick);
+
+    let popup=L.popup();
+    function onMapClick(e){
+        popup.setLatLng(e.latlng)
+            .setContent("you clicked the map at"+e.latlng.toString())
+            .openOn(map);
+    }
+    map.on('click',onMapClick);
+
+
+</script>
+
+</html>

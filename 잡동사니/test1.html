@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="popup"> 
+    <colgroup><col width="110"><col width=""><col width="110"><col width=""></colgroup>
+    <tbody>
+        <tr>
+        <th>유형</th>
+        <td colspan="3" style="vertical-align: middle;"><div class="inpSearch" style="height:auto; margin:5px;">          
+        <input type="radio" name="insertTransTy" value="SELL">팝니다　<input type="radio" name="insertTransTy" value="BUY">삽니다</div>
+    </td></tr><tr><th>단말기 통신사</th><td colspan="3"><div class="inpSearch"><span title="" class="k-widget k-dropdown k-header select" unselectable="on" role="listbox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-owns="insertTelecom_listbox" aria-live="polite" aria-disabled="false" aria-busy="false" aria-activedescendant="77f5902d-176a-4fd0-aa74-278a2795ab9b" style=""><span unselectable="on" class="k-dropdown-wrap k-state-default"><span unselectable="on" class="k-input">SKT(씨엔에스링크)</span><span unselectable="on" class="k-select" aria-label="select"><span class="k-icon k-i-arrow-60-down"></span></span></span><input class="select" id="insertTelecom" name="insertTelecom" data-role="dropdownlist" style="display: none;"></span></div></td></tr><tr><th>구매일자</th><td colspan="3"><span class="k-widget k-datepicker k-header inp01 datepicker" style="width: calc(96%);"><span class="k-picker-wrap k-state-default"><input type="text" class="inp01 datepicker k-input" id="insertBuyDt" name="insertBuyDt" maxlength="0" style="width: 100%;" data-role="datepicker" role="combobox" aria-expanded="false" aria-owns="insertBuyDt_dateview" aria-disabled="false" aria-activedescendant="7e773b7b-1800-427b-a2d8-399c53d3e21f_cell_selected"><span unselectable="on" class="k-select" aria-label="select" role="button" aria-controls="insertBuyDt_dateview"><span class="k-icon k-i-calendar"></span></span></span></span></td></tr><tr><th>가격</th><td colspan="3"><input type="text" class="inp01 full" id="insertPrice" name="insertPrice" maxlength="9"></td></tr><tr><th>연락처</th><td colspan="3"><input type="text" class="inp01 full" id="insertTelno" name="insertTelno" maxlength="60"></td></tr><tr><th>제목</th><td colspan="3"><input type="text" class="inp01 full" id="insertTitle" name="insertTitle" maxlength="80"></td></tr><tr><th>내용</th><td colspan="3"><textarea style="height: 82px; margin-top: 5px; margin-bottom: 5px; resize: none; padding: 10px;" class="inp01 full" id="insertCn" name="insertCn" maxlength="1300"></textarea></td></tr></tbody>
+    </div>
+
+</body>
+<script>
+    let popup=document.getElementById("popup");
+    console.log(popup);
+</script>
+
+</html>
