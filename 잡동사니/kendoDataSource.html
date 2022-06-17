@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://kendo.cdn.telerik.com/2022.2.510/styles/kendo.common.min.css" rel="stylesheet" />
+    <link href="https://kendo.cdn.telerik.com/2022.2.510/styles/kendo.default.min.css" rel="stylesheet" />
+    <script src="https://kendo.cdn.telerik.com/2022.2.510/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2022.2.510/js/kendo.all.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="grid">
+    </div>
+</body>
+<script> 
+        var products = [{
+            ProductID: 11,
+            ProductName: "Chai",
+        }, {
+            ProductID: 22,
+            ProductName: "Chang",
+        }, {
+            ProductID: 33,
+            ProductName: "Aniseed Syrup",
+        }, {
+            ProductID: 44,
+            ProductName: "Chef Anton's Cajun Seasoning",
+        }, {
+            ProductID: 55,
+            ProductName: "Chef Anton's Gumbo Mix",
+        }];
+        $(document).ready(function () {
+            $("#grid").kendoGrid({
+                dataSource: {
+                    data: products,
+                    schema: {
+                        model: {
+                            id: "ProductID",
+                            fields: {
+                                ProductName: {
+                                    type: "string"
+                                }
+                            },
+                        }
+                    },
+                    pageSize: 10
+                },
+                sortable: true, 
+                filterable: true,
+                pageable: true,
+                columns: [
+                    { field: "ProductID", title: "ProductID" },
+                    { field: "ProductName", title: "ProductName" },
+                    { command: ["edit", "destroy"], title: "&nbsp;" }
+                ],
+                editable: "inline"
+            });
+        }); 
+
+</script>
+</html>

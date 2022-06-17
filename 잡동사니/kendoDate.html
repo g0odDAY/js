@@ -22,7 +22,25 @@
 
           <h4 style="margin-top:1em">Disable Federal Holidays in USA in 2015</h4>
           <div id="national-holidays"></div>
+
+
+          <tr>
+              <th>파일업로드</th>
+          <td>
+              <input type="text" class="inp filetype" id="filetype" disabled="disabled">
+              <label for="files" class="btnFile" style="background:url('/hmts-ops-service/images/ico/ico_search01.png') no-repeat right top; padding: 18px;">
+            <input type="file" id="files" name="files" class="upload-hidden">
+            <input type="hidden" id="atchFileSn" value="파일기본키 값 ">
+              </label>
+         </td>
+        </tr>
+
       </div>
+
+
+      chDCont += '</tr><tr>';
+        chDCont += '<th>파일 첨부</th>';
+        chDCont += '<td colspan="3"><input type="file" class="inp01 full" id="atchFileNm1" name="atchFileNm1" maxlength="80" /></td>';
       <script>
         $(document).ready(function() {
             $("#weekend-calendar").kendoCalendar({
@@ -67,10 +85,20 @@
                 }
             }
         });
-
+        <tr>
+            <th>첨부파일</th>
+            <td>
+                <a href="javascript:;" id="fdwn-a" class="inp">
+                    <span class="t01" id="fdwn-span"></span>
+                </a>
+            </td>
+        </tr>
         let today=new Date();
         let yesterDay=today-1;
         console.log(today.getDate(),'*******',yesterDay);
+
+
+        
       </script>
 </div>
 
