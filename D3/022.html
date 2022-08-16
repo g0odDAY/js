@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        rect:hover{
+            stroke: blue;
+            stroke-width: 3px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="canvas">
+        <svg>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+        </svg>
+    </div>
+</body>
+<script>
+    //http://github.com/d3/d3-shape
+    //const f = d3.line().x().y().curve()의 형태로 선언
+    //f(data)
+    let data = [ 5,15,10,25,30,35,40];
+    let xfunction = (data,idx) => idx * 10;
+    let yfunction = (data,idx) => 100 -data;
+    const f = d3.line()
+                .x(xfunction)
+                .y(yfunction)
+                .curve(d3.curveStep);
+    console.log(f(data));
+
+    //curves
+    //https://github.com/d3/d3-shape#curves
+    const svg = d3.select('svg')
+                    .attr('width',500)
+                    .attr('height',500);
+    svg.selectAll('path')
+        .attr('fill','none')
+        .attr('stroke','blue')
+        .attr('d',f(data));
+</script>
+</html>

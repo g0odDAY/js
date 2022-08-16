@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="canvas"></div>
+</body>
+<script>
+    const canvas = d3.select('.canvas');
+    
+    d3.csv('../csv/jejuoreum.csv')
+      .then(data=>{
+        //throw new Error("Error!!!@@@");
+        console.log("success data",data);
+        const svg = canvas.append('svg')
+                                .attr('height',2000)
+                                .attr('width',2000);
+        data.forEach(value => {
+            
+           svg.append('circle')
+              .attr('cx',(value.위도-33.1)*2000+10)
+              .attr('cy',(value.경도-126)*500+10)
+              .attr('r',5)
+              .attr('fill','pink');
+        });
+    })
+      .catch(err=>console.error("err",err));
+</script>
+</html>

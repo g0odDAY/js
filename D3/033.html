@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <style>
+         .tooltip {
+            position: absolute;
+            text-align: center;
+            padding: 10px;
+            background: gray;
+            color: white;
+            border-radius: 3px;
+        }
+
+        h1 {
+            position: absolute;
+            height: 500px;
+            width: 500px;
+        }
+    </style>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <h1>hgigigigigi</h1>
+    <div class="canvas"></div>
+    <script>
+        const nodes = [ // nodes는 요소 자체에 대한 정보를 담고 있습니다.
+            {
+                "id": "a사",
+                "직원수": 11,
+                "유형": "주식회사"
+            },
+            {
+                "id": "b사",
+                "직원수": 8,
+                "유형": "학원"
+            },
+            {
+                "id": "c사",
+                "직원수": 7,
+                "유형": "연구원"
+            },
+            {
+                "id": "d사",
+                "직원수": 7,
+                "유형": "출판사"
+            },
+            {
+                "id": "e사",
+                "직원수": 32,
+                "유형": "주식회사"
+            },
+            {
+                "id": "f사",
+                "직원수": 11,
+                "유형": "주식회사"
+            }
+        ]
+
+        const links = [ // links는 연결에 대한 정보를 담고 있습니다.
+            {
+                "source": "a사",
+                "target": "b사",
+                "거리": 8
+            },
+            {
+                "source": "a사",
+                "target": "c사",
+                "거리": 9
+            },
+            {
+                "source": "a사",
+                "target": "d사",
+                "거리": 9
+            },
+            {
+                "source": "a사",
+                "target": "e사",
+                "거리": 8
+            },
+            {
+                "source": "a사",
+                "target": "f사",
+                "거리": 8
+            },
+            // 분할
+            {
+                "source": "b사",
+                "target": "c사",
+                "거리": 3
+            },
+            {
+                "source": "b사",
+                "target": "d사",
+                "거리": 4
+            },
+            {
+                "source": "b사",
+                "target": "e사",
+                "거리": 4
+            },
+            {
+                "source": "b사",
+                "target": "f사",
+                "거리": 5
+            },
+            // 분할
+            {
+                "source": "d사",
+                "target": "e사",
+                "거리": 3
+            },
+            {
+                "source": "d사",
+                "target": "f사",
+                "거리": 3
+            }
+        ];
+        const networkGraph ={
+
+        }
+        function drag(){
+            createGraph:function(nodes,links){
+                const width = 800;
+                const height = 800;
+
+                const fillCircle = function(g){
+                    if(g == '주식회사'){
+                        return 'pink';
+                    }else if(g=='학원'){
+                        return 'blue';
+                    }else if(g=='연구원'){
+                        return 'blue';
+                    }else{
+                        return 'gray';
+                    }
+                }
+                const simulation = d3.forceSimulation(nodes)   
+                                        .force('link',d3.forceLink(links).id(d=>d.id))
+                                        .force('charge',d3.forceManyBody().strength(0))
+                                        .force('center',d3.forceCenter(width/2,height/2))
+                                        .force('collide',d3.forceCollide().radius(d=>d.직원수*9));
+            }
+        }
+        networkGraph.createGraph(nodes,links);
+    </script>
+</body>
+</html>

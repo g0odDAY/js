@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        rect:hover{
+            stroke: blue;
+            stroke-width: 3px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+   
+    <div class="canvas">
+        <svg>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+            <path></path>
+        </svg>
+    </div>
+</body>
+<script>
+    const svg = d3.select('.canvas')
+                    .append('svg')
+                    .attr('width',1000)
+                    .attr('height',1000);
+    const g = svg.append('g')
+                    .attr('transform','translate(100,100)');
+    //http://github.com/d3/d3-shape#arc
+    //const f = d3.arc().innerRadius().outerRadius().startAngle().endAngle()의 형태로 선언
+    //f(data)
+    let data = [50,150,100,200];
+   
+    const f = d3.arc().innerRadius(0).outerRadius(50);
+    console.log(f(data));
+    const pie =d3.pie()
+                .sort((a,b)=>b-a)//내림차순정렬
+                .value(d=>d);
+    console.log(pie(data))
+    g.selectAll('path')
+    .data(pie(data))
+    .enter()
+    .append('path')
+    .attr('fill','pink')
+    .attr('stroke','blue')
+    .attr('stroke-width','2px')
+    .attr('d',f);
+</script>
+</html>

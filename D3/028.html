@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        rect:hover {
+            stroke: black;
+            stroke-width: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>확진자수 현황</h1>
+    <div class="canvas"></div>
+    <script>
+    const data = [10, 10, 20, 20, 30, 30, 30, 30, 30, 40, 40, 50, 50, 60, 60, 60, 60, 60, 60, 60];
+    const hist  = d3.histogram();
+    console.log(hist(data));
+
+    for(const i of hist(data)[2]){
+        console.log(i);
+    }
+        
+    
+    </script>
+</body>
+</html>

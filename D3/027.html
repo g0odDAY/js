@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        rect:hover {
+            stroke: black;
+            stroke-width: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>확진자수 현황</h1>
+    <div class="canvas"></div>
+    <script>
+        const data = [50,150,100,200];
+
+        const pie = d3.pie()
+                        .sort((a,b)=> b - a)
+                        .value(d=>d);
+        console.log(pie(data));
+      const data1 =  [
+    {
+        "data": 50,
+        "index": 3,
+        "value": 50,
+        "startAngle": 5.654866776461628,
+        "endAngle": 6.283185307179586,
+        "padAngle": 0
+    },
+    {
+        "data": 150,
+        "index": 1,
+        "value": 150,
+        "startAngle": 2.5132741228718345,
+        "endAngle": 4.39822971502571,
+        "padAngle": 0
+    },
+    {
+        "data": 100,
+        "index": 2,
+        "value": 100,
+        "startAngle": 4.39822971502571,
+        "endAngle": 5.654866776461628,
+        "padAngle": 0
+    },
+    {
+        "data": 200,
+        "index": 0,
+        "value": 200,
+        "startAngle": 0,
+        "endAngle": 2.5132741228718345,
+        "padAngle": 0
+    }
+];
+    const svg =d3.select('.canvas')
+                .append('svg')
+                .attr('width',1000)
+                .attr('height',1000);
+    const g = svg.append('g')
+                .attr('transform','translate(100,100)');
+    const f= d3.arc()
+                .innerRadius(0)
+                .outerRadius(50);
+    g.selectAll('path')
+        .data(data1)
+        .enter()
+        .append('path')
+        .attr('fill','pink')
+        .attr('stroke','blue')
+        .attr('stroke-width','2px')
+        .attr('d',f);
+
+    </script>
+</body>
+</html>

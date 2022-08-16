@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="canvas"></div>
+
+</body>
+<script>
+    // const sampledata = [
+    //         [5, 20, 30, '#ff0000'],
+    //         [5, 320, 90, '#ff0000'],
+    //         [5, 150, 50, '#ff0000'],
+    //         [7, 120, 70, '#ff0000'], 
+    //         [7, 530, 110, '#ff0000'],
+    //         [7, 410, 20, '#ff0000'], 
+    //         [12, 720, 60, '#ff0000'], 
+    //         [12, 30, 110, '#ff0000'], 
+    //         [12, 90, 130, '#ff0000'], 
+    //         [19, 510, 180, '#ff0000'],
+    //         [19, 310, 120, '#ff0000'],
+    //         [8, 50, 150, '#ff0000'],
+    //         [7, 50, 350, '#ff0000'],
+    //     ];
+
+    let sampledata =[];
+    for(let i = 0;i<1000;i++){
+        sampledata.push({
+            'r' :Math.random() * 20,
+            'cx' :Math.random() * 600,
+            'cy' :Math.random() * 400,
+            'color' :`hsl(${Math.random()*360},100%,50%)`
+        })
+    }
+    console.log(sampledata);
+
+    const svg = d3.select('.canvas')
+                  .append('svg')
+                  .attr('width',1000)
+                  .attr('height',1000);
+    svg.selectAll('circle')
+        .data(sampledata)
+        .enter()// enter(데이터 수 > dom요소), updata(재적용,화면갱신),exit(데이터 수 <  dom요소)
+        .append('circle')
+        .attr('r',d=>d.r)
+        .attr('cx',d=>d.cx+10) 
+        .attr('cy',d=>d.cy+10)
+        .attr('fill',d=>d.color)    
+
+
+</script>
+</html>

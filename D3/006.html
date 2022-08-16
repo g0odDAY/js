@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <svg width="500" height="500"></svg>
+</body>
+<script>
+    const sampladata = [100,10,30,50,10,70,200,90];
+    const sampladata2 = [110,50,20,30,50,90,120,70];
+    const svg = d3.select('svg');
+    const barWidth = 30;
+    sampladata.forEach((data,idx)=>{
+        svg.append('rect')
+            .attr('id',`bar${idx}`)
+            .attr('height',data)
+            .attr('width',barWidth)
+            .attr('x',40*idx)
+            .attr('y',300-data)
+            .transition()
+            .duration(3000)
+            .ease(d3.easeLinear)
+            .attr('fill','red')
+            .attr('height',sampladata2[idx])
+            .attr('y',300-sampladata2[idx]);
+        d3.select('#bar0')
+            .transition()
+            .duration(1000)
+            .ease(d3.easeLinear)
+            .attr('fill','blue')
+            .delay(2000);
+
+    })
+</script>
+</html>
