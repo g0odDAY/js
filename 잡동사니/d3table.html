@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+        <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+    <!-- <link rel="stylesheet" href="../css/apiVisualization.css" /> -->
+    <style>   
+    table{
+           width: 100%;    
+    }
+    table, th, td {
+           border: 1px solid #ff00bc;
+           text-align:center;
+           font-weight:bold;
+    }
+    .box-gray-border {
+        padding: 20px;
+        margin-bottom: 40px;
+        border: 1px solid #e0e0e0;
+        background-color: #fafafa;
+    }
+
+    #drop-area {
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  width: 480px;
+  font-family: sans-serif;
+  margin: 100px auto;
+  padding: 20px;
+}
+#drop-area.highlight {
+  border-color: purple;
+}
+p {
+  margin-top: 0;
+}
+.my-form {
+  margin-bottom: 10px;
+}
+#gallery {
+  margin-top: 10px;
+}
+#gallery img {
+  width: 150px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.button {
+  display: inline-block;
+  padding: 10px;
+  background: #ccc;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.button:hover {
+  background: #ddd;
+}
+#fileElem {
+  display: none;
+}
+ul{
+    list-style: none;
+}
+li{
+    float: left;
+}
+ul>li>a{
+    color: #ff00bc;
+    padding: 5px;
+    margin: 0px;
+    border: solid 1px black;
+}
+
+   </style>
+</head>
+<body>
+   
+    <div id="table">
+    </div>
+</body>
+<script>
+      d3.csv("../csv/인천전기차등록.csv").then(data=>{
+        const title = d3.keys(data[0]);
+        const table = d3.select('#table').append('table');
+        const thead = table.append('thead');
+        const tbody = table.append('tbody');
+        const header = thead.append('tr')
+                            .selectAll('th')
+                            .data(title).enter()
+                            .append('th')
+                            .text(function (d){return d;});
+        const rows = tbody.selectAll('tr').data(data)
+                          .enter()
+                          .append('tr');
+        const cells = rows.selectAll('td')
+                          .data(function (d){
+                            return title.map(function (title){
+                                return {'title':title,'value':d[title]};
+                            });
+                          }).enter()
+                          .append('td')
+                          .text(function (d) {return d.value});
+    });  
+</script>
+</html>

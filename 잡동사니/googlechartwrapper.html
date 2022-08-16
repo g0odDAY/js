@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body>
+    <div id="vis_div" style="width: 600px; height: 400px;">
+
+    </div>
+</body>
+<script>
+      google.charts.load('current');  
+    google.charts.setOnLoadCallback(drawVisualization);
+    function drawVisualization(){
+        let wrapper = new google.visualization.ChartWrapper({
+            chartType:'ColumnChart',
+            dataTable: [['', 'Germany', 'USA', 'Brazil', 'Canada', 'France', 'RU'],
+                        ['', 700, 300, 400, 500, 600, 800]],
+            options:{'title':'Countries'},
+            containerId:'vis_div'
+        });
+        wrapper.draw();
+    }
+</script>
+</html>

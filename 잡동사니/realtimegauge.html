@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current',{'packages':['gauge']});
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart(){
+            const data = google.visualization.arrayToDataTable([
+                ['Label','Value'],
+                ['Memory',80],
+                ['CPU',55],
+                ['Network',68]
+            ]);
+            const options = {
+                width:400,height:120,
+                redFrom :90,redTo :100,
+                yellowFrom:75,yellowTo:90,
+                minorTicks:5
+            };
+            const chart = new google.visualization.Gauge(document.getElementById("chart_div"));
+            chart.draw(data,options);
+            setInterval(()=>{
+                data.setValue(0,1,40+Math.round(60 * Math.random()));
+                chart.draw(data,options);
+            },13000);
+            setInterval(()=>{
+                data.setValue(1,1,40+Math.round(60 * Math.random()));
+                chart.draw(data,options);
+            },5000);
+            setInterval(()=>{
+                data.setValue(2,1,60+Math.round(60 * Math.random()));
+                chart.draw(data,options);
+            },26000);
+        }
+    </script>
+</head>
+<body>
+    <div id="chart_div" style="width:400; height:120px;"></div>
+</body>
+</html>

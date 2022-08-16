@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <style>
+      .chart{
+        border: 1px solid orange;
+        float: left;
+        margin: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chart" class="chart" style="width: 779px; height: 300px"></div>
+
+  </body>
+  <script type="text/javascript">
+    //Google Stuff
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(function(){ drawChart(new_option)});
+    </script>
+    <script type="text/javascript">
+      var chartOption = function(target, maxValue, color, name){
+        this.name = name;
+        this.target = target;
+        this.data = null;
+        this.chart = null;
+        this.options = {
+          legend: { position: 'none' },
+          vAxis: {minValue:0, maxValue:maxValue},
+          hAxis: {
+            textStyle: {
+              fontSize: 11
+            }
+          },
+          colors: [color],
+          animation: {
+            duration: 500,
+            easing: 'in',
+            startup: true
+          }
+        }
+        
+      }
+
+      var new_option = new chartOption('chart', 80, '#FF5E00', '온도');
+      
+      function drawChart(option) {
+        var o = option;
+        if(o != null){
+          //초기값일때만 처리
+          if(o.chart == null && o.data == null){
+            o.data = new google.visualization.DataTable();
+            o.data.addColumn('string', 'time');
+            o.data.addColumn('number', o.name);
+            o.data.addRow(['', 0]);
+            o.chart = new google.visualization.LineChart(document.getElementById(o.target));
+          }
+
+          o.chart.draw(o.data, o.options);
+        }
+      }
+
+      function animateRenewal(option){
+        var o = option;
+        if (o.data.getNumberOfRows() >= 10) {
+          o.data.removeRow(0);
+        }
+
+
+        var value = 0;
+        var maxValue = o.options.vAxis.maxValue;
+        if(maxValue <= 1){
+          value = Number((Math.random() * maxValue).toFixed(1));
+        }else {
+          value = Math.floor(Math.random() * maxValue);
+        }
+        o.data.insertRows(o.data.getNumberOfRows(), [[getNowTime(), value]]);
+        drawChart(o);
+      }
+
+      setInterval(function(){
+        animateRenewal(new_option);
+      }, 3000);
+      
+      function getNowTime(){
+        var d = new Date();
+        var sep = ":";
+        var hh = d.getHours();
+        var mm = d.getMinutes();
+        var ss = d.getSeconds();
+        return hh + sep + mm + sep + ss;
+      }
+      
+    </script>
+</html>

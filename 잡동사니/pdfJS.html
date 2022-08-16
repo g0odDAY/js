@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.9.359/pdf.min.js" integrity="sha512-U5C477Z8VvmbYAoV4HDq17tf4wG6HXPC6/KM9+0/wEXQQ13gmKY2Zb0Z2vu0VNUWch4GlJ+Tl/dfoLOH4i2msw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="../js/auto_table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="pdfDiv">
+fffffffffffffffffffffffffffffffffffffffff
+fsdfdsfdsfsdfdsff
+azzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
+    </div>
+    <button id="savaPdfBtn">Pdf다운로드</button>
+</body>
+<script>
+   $('#savePdfBtn').click(function() {
+    html2canvas($('#pdfDiv')[0]).then(function(canvas) {
+        // 캔버스를 이미지로 변환
+        let imgData = canvas.toDataURL('image/png');
+
+        let margin = 10; // 출력 페이지 여백설정
+        let imgWidth = 210 - (10 * 2); // 이미지 가로 길이(mm) A4 기준
+        let pageHeight = imgWidth * 1.414;  // 출력 페이지 세로 길이 계산 A4 기준
+        let imgHeight = canvas.height * imgWidth / canvas.width;
+        let heightLeft = imgHeight;
+
+        let doc = new jsPDF('p', 'mm');
+        let position = margin;
+
+        // 첫 페이지 출력
+        doc.addImage(imgData, 'PNG', margin, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+
+        // 한 페이지 이상일 경우 루프 돌면서 출력
+        while (heightLeft >= 20) {
+            position = heightLeft - imgHeight;
+            doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            doc.addPage();
+            heightLeft -= pageHeight;
+        }
+
+        // 파일 저장
+        doc.save('sample.pdf');
+    });
+});
+
+</script>
+</html>

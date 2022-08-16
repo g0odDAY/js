@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+ <script src="https://d3js.org/d3.v5.min.js"></script>
+<head>  
+    <meta charset="UTF-8">  <title>D3 REaltime chart </title>
+</head>
+
+<body>
+   <svg width="350px" height="350px"></svg>
+</body>
+<script>
+    const data = [
+      { value : 3, time : new Date("2019-03-22T03:00:00") },
+      { value : 1, time : new Date("2019-03-22T03:05:00") },
+      { value : 9, time : new Date("2019-03-22T03:10:00") },
+      { value : 6, time : new Date("2019-03-22T03:15:00") },
+      { value : 2, time : new Date("2019-03-22T03:20:00") },
+      { value : 6, time : new Date("2019-03-22T03:25:00") }
+    ];
+const xScale = d3.scaleTime()
+                .domain([new Date("2019-03-22T03:00:00"),new Date("2019-03-22T03:25:00")])
+                .range([20,330]);
+const yScale = d3.scaleLinear()
+                .domain([1, 9])
+                .range([330, 20]);   
+const xAxisSvg  = d3.select("svg").append("g").attr("transform","translate(0,330)");
+const yAxisSvg  = d3.select("svg").append("g");
+const xAxis = d3.axisBottom(xScale).tickSize(10).ticks(10);
+const yAxis = d3.axisRight(yScale).tickSize(10).ticks(10);
+xAxis(xAxisSvg);
+yAxis(yAxisSvg);
+
+d3.select("svg").selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("r",5)
+    .attr("cx",d=>xScale(d.time))
+    .attr("cy",d=>yScale(d.value))
+    .style("fill","black");
+
+    const line = d3.line()
+                .x(d=>xScale(d.time))
+                .y(d=>yScale(d.value));
+    d3.select("svg")
+    .append("path")
+    .attr("d",line(data))
+    .attr("fill","none")
+    .attr("stroke","black");
+
+</script>
+
+    
+</html>

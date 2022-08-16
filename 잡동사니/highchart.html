@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<style>
+    #container {
+    height: 400px;
+}
+
+.highcharts-figure,
+.highcharts-data-table table {
+    min-width: 310px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+#datatable {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+#datatable caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+#datatable th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+#datatable td,
+#datatable th,
+#datatable caption {
+    padding: 0.5em;
+}
+
+#datatable thead tr,
+#datatable tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+#datatable tr:hover {
+    background: #f1f7ff;
+}
+
+</style>
+</head>
+<body>
+    <figure class="highcharts-figure">
+        <div id="zzd"></div>
+        <p class="highcharts-description">
+            Chart showing how an HTML table can be used as the data source for the
+            chart using the Highcharts data module. The chart is built by
+            referencing the existing HTML data table in the page. Several common
+            data source types are available, including CSV and Google Spreadsheet.
+        </p>
+    <button type="button" onclick="convertChart()">차트변환</button>
+        
+    
+    </figure>
+
+    
+   <table id="chartTable" style="border-collapse: collapse; border: 2px solid black;"><tr class="tr_head"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">mttrClCd</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">abnrmlAcdntCd</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">cnt</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A01</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">34</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A02</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">22</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A03</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">10</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A04</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A05</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">43</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">0</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A06</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">13</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">CH</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A00</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">2</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">CH</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A02</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">CH</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A03</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">CH</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A04</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">DG</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A00</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">7</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">DG</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A03</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">4</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">DG</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A04</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">DG</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">A05</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">5</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">DG</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A11</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">1</td></tr><tr class="tr_body"><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px;">GS</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">A00</td><td style="border: 1px solid black; padding: 5px; text-align: center; font-size: 12px; background-color: white;">2</td></tr></table>
+</body>
+<script>
+    
+    Highcharts.chart('zzd', {
+    data: {
+        table: 'chartTable'
+    },
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Live births in Norway'
+    },
+    subtitle: {
+        text:
+            'Source: <a href="https://www.ssb.no/en/statbank/table/04231" target="_blank">SSB</a>'
+    },
+    xAxis: {
+        type: 'categodfdsfry'
+    },
+    yAxis: {
+        allowDecimals: false,
+        title: {
+            text: 'Amoufdsfdfnt'
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            return '<b>' + this.series.name + '</b><br/>' +
+                this.point.y + ' ' + this.point.name.toLowerCase();
+        }
+    }
+});
+
+</script>
+</html>

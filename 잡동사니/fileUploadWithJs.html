@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" id="file-selector" accept=".jpg, .jpeg, .png">
+
+    <p id="status"></p>
+    <div>
+        <img id="output" alt="output">
+    </div>
+</body>
+<script>
+    const fileSelector = document.getElementById('file-selector');
+    fileSelector.addEventListener('change',(event) => {
+        const fileList = event.target.files;
+        console.log(fileList);
+    })
+
+    
+
+    function getMetadataForFileList(fileList){
+        for(const file of fileList){
+            const name = file.name ? file.name :'NOT SUPPORTED';
+            const type = file.type ? file.type :'NOT SUPPORTED';
+            const size = file.size ? file.size :'NOT SUPPORTED';
+            console.log({file,name,type,size}); 
+        }
+    };
+
+    function readImage(file){
+        if(file.type && !file.type.startsWith('image/')){
+            console.log('File is not an image',file.type,file);
+            return;
+        }
+        const reader = new FileReader();
+        reader.addEventListener('load',(event)=>{
+            img.src = event.target.result;
+        });
+        reader.readAsDataURL(file);
+    };
+
+    
+     const status = document.getElementById('status');
+      const output = document.getElementById('output');
+      if (window.FileList && window.File && window.FileReader) {
+        document.getElementById('file-selector').addEventListener('change', event => {
+          output.src = '';
+          status.textContent = '';
+          const file = event.target.files[0];
+          if (!file.type) {
+            status.textContent = 'Error: The File.type property does not appear to be supported on this browser.';
+            return;
+          }
+          if (!file.type.match('image.*')) {
+            status.textContent = 'Error: The selected file does not appear to be an image.'
+            return;
+          }
+          const reader = new FileReader();
+          reader.addEventListener('load', event => {
+            output.src = event.target.result;
+          });
+          reader.addEventListener('progress',(event)=>{
+            if(event.loaded && event.total){
+                const percent = (event.loaded / event.total) * 100;
+                console.log(`Progress: ${Math.round(percent)}`); 
+            }
+          })
+          reader.readAsDataURL(file);
+        }); 
+      }
+    
+</script>
+</html>

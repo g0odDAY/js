@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" accept=".csv" id="demoA">
+    <input type="file" accept=".csv" id="demoB">
+</body>
+<script>
+   window.onload = () => {
+  let picker = document.getElementById("demoA");
+  picker.onchange = () => {
+    let selected = picker.files[0];
+    console.log(selected);
+    let reader = new FileReader();
+    reader.addEventListener("loadend", () => {
+      console.log(reader.result);
+    });
+    reader.readAsText(selected);
+  };
+};
+</script>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>js excel example 03</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.3/xlsx.full.min.js"></script>
+<script type="text/javascript" src="http://d3js.org/d3.v5.min.js"></script>
+<style>
+    .objecttable td {
+      padding: 8px;
+    }
+   </style>
+</head>
+<body>
+<div id="d3table">
+
+</div>
+
+파일 선택 : <input type="file" id="excelFile" onchange="excelExport(event)" accept="*.csv"/>
+<h1>Header 정보 보기</h1>
+<div id="displayHeaders"></div>
+<h1>JSON 형태로 보기</h1>
+<div id="displayExcelJson"></div>
+<h1>CSV 형태로 보기</h1>
+<div id="displayExcelCsv"></div>
+<h1>HTML 형태로 보기</h1>
+<div id="displayExcelHtml"></div>
+</body>
+<script>
+    function excelExport(event){
+        console.log(event);
+        excelExportCommon(event, handleExcelDataAll);
+    }
+    function excelExportCommon(event, callback){
+        let input = event.target;
+        console.log(input.files[0]);
+        let reader = new FileReader();
+        reader.onload = function(){
+            let fileData = reader.result;
+            let wb = XLSX.read(fileData, {type : 'binary'});
+            let sheetNameList = wb.SheetNames; // 시트 이름 목록 가져오기 
+            let firstSheetName = sheetNameList[0]; // 첫번째 시트명
+            let firstSheet = wb.Sheets[firstSheetName]; // 첫번째 시트 
+            callback(firstSheet);      
+        };
+        reader.readAsBinaryString(input.files[0]);
+    }
+    function handleExcelDataAll(sheet){
+        handleExcelDataHeader(sheet); // header 정보 
+        handleExcelDataJson(sheet); // json 형태
+        handleExcelDataCsv(sheet); // csv 형태
+        handleExcelDataHtml(sheet); // html 형태
+    }
+    function handleExcelDataHeader(sheet){
+        let headers = get_header_row(sheet);
+        $("#displayHeaders").html(JSON.stringify(headers));
+    }
+    function handleExcelDataJson(data){
+        //console.log(JSON.stringify(XLSX.utils.sheet_to_json (data)));
+        const value = JSON.parse(JSON.stringify(XLSX.utils.sheet_to_json (data)));
+        console.log(value);
+        console.log(d3.keys(value[0]));
+        d3.select("#d3table")
+            .append("table")
+            .style("border-collapse", "collapse")
+            .style("border", "2px black solid")
+            .append("tr")
+            .attr("class", "tr_head")
+            .selectAll("td")
+                .data(d3.keys(value[0]))
+                .enter().append("td")
+                .style("border", "1px black solid")
+                .style("padding", "5px")
+                .style("text-align", "center")
+                .on("mouseover", function(){ d3.select(this).style("background-color", "aliceblue")})
+                .on("mouseout", function(){ d3.select(this).style("background-color", "white")})
+                .text(function(d) { return d; } )
+                .style("font-size", "12px");
+
+        d3.select("#d3table table").selectAll("tr")
+            .data(value)
+            .enter().append("tr")
+            .attr("class", "tr_body")
+            .selectAll("td")
+                .data(function(d){   return d3.values(d);})
+                .enter().append("td")
+                .style("border", "1px black solid")
+                .style("padding", "5px")
+                .style("text-align", "center")
+                .on("mouseover", function(){ d3.select(this).style("background-color", "aliceblue")})
+                .on("mouseout", function(){ d3.select(this).style("background-color", "white")})
+                .text(function(d, i){ return d;})
+                .style("font-size", "12px");
+
+
+        $("#displayExcelJson").html(JSON.stringify(XLSX.utils.sheet_to_json (data)));
+    }
+    function handleExcelDataCsv(sheet){
+        $("#displayExcelCsv").html(XLSX.utils.sheet_to_csv (sheet));
+    }
+    function handleExcelDataHtml(data){
+        
+      
+        $("#displayExcelHtml").html(XLSX.utils.sheet_to_html (data));
+    }
+    
+    function get_header_row(sheet) {
+        let headers = [];
+        let range = XLSX.utils.decode_range(sheet['!ref']);
+        let C, R = range.s.r; /* start in the first row */
+        /* walk every column in the range */
+        for(C = range.s.c; C <= range.e.c; ++C) {
+            let cell = sheet[XLSX.utils.encode_cell({c:C, r:R})] /* find the cell in the first row */
+    
+            let hdr = "UNKNOWN " + C; // <-- replace with your desired default 
+            if(cell && cell.t) hdr = XLSX.utils.format_cell(cell);
+    
+            headers.push(hdr);
+        }
+        return headers;
+    }
+    var matrix = [
+     {name: "Lee Gai Fun", age: 42, sex: "M"},
+     {name: "Laia Hamidullah", age: 27, sex: "F" },
+     {name: "Abraham Mdulla", age: 33, sex: "M" }
+    ];
+    //const title = d3.keys(data[0]);
+    
+    
+    // var tr = d3.select(".objecttable tbody")
+    //  .selectAll("tr")
+    //  .data(matrix)
+    //  .enter().append("tr");
+
+    // var td = tr.selectAll("td")
+    //  .data(function(d, i) { return Object.values(d); })
+    //  .enter().append("td")
+    // .text(function(d) { return d; });
+    </script>
+</html>

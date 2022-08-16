@@ -1,0 +1,54 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<meta charset=utf-8>  
+<meta name="viewport" content="width=620">  
+<title>HTML5 Demo: Drag and drop, automatic upload</title>  
+<body>  
+  
+<style>  
+#holder { border: 10px dashed #ccc; width: 300px; min-height: 300px; margin: 20px auto;}  
+#holder.hover { border: 10px dashed #0c0; }  
+#holder img { display: block; margin: 10px auto; }  
+  
+  
+#container { width: 300px; margin: 0px auto;}  
+progress { width: 300px; margin: 0px auto; }  
+</style>  
+<div id="holder">  
+</div>  
+  
+<div id="container">  
+<progress id="uploadprogress" min="0" max="100" value="0"/>  
+</div>  
+  
+  
+<script>  
+var holder = document.getElementById('holder');  
+var progress = document.getElementById('uploadprogress');  
+  
+holder.ondragover = function () { this.className = 'hover'; return false; };  
+holder.ondragend = function () { this.className = ''; return false; };  
+holder.ondrop = function (e) {  
+this.className = '';  
+e.preventDefault();  
+console.log(e.dataTransfer.files);
+previewfile(e.dataTransfer.files[0]);  
+}  
+  
+function previewfile(file) {  
+console.log("previewfile file",file);
+var reader = new FileReader();  
+console.log(reader);
+reader.onload = function (event) {  
+var image = new Image();  
+image.src = event.target.result;  
+image.width = 250; // a fake resize  
+holder.appendChild(image);  
+};  
+  
+reader.readAsDataURL(file);  
+}  
+</script>  
+</body>  
+</html>  

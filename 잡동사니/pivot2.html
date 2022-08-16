@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+    src="https://code.jquery.com/jquery-3.6.0.js"
+    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.js" integrity="sha512-XgJh9jgd6gAHu9PcRBBAp0Hda8Tg87zi09Q2639t0tQpFFQhGpeCgaiEFji36Ozijjx9agZxB0w53edOFGCQ0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pivottable/2.23.0/pivot.min.css" integrity="sha512-BDStKWno6Ga+5cOFT9BUnl9erQFzfj+Qmr5MDnuGqTQ/QYDO1LPdonnF6V6lBO6JI13wg29/XmPsufxmCJ8TvQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body>
+    <div id="output"></div>
+</body>
+<script>
+    const data=[
+                {color: "blue", shape: "circle"},
+                {color: "red", shape: "triangle"},
+                {color: "yellow", shape: "triangle"},
+                {color: "blue", shape: "triangle"},
+                {color: "red", shape: "circle"},
+                {color: "red", shape: "triangle"},
+                {color: "green", shape: "circle"},
+                {color: "red", shape: "circle"}
+                ];
+    const data1=[
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "00",
+        "cnt": "15"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "01",
+        "cnt": "17"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "02",
+        "cnt": "16"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "03",
+        "cnt": "15"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "04",
+        "cnt": "16"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "05",
+        "cnt": "15"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "06",
+        "cnt": "16"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "07",
+        "cnt": "17"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "08",
+        "cnt": "21"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "09",
+        "cnt": "24"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "10",
+        "cnt": "32"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "11",
+        "cnt": "31"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "12",
+        "cnt": "29"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "13",
+        "cnt": "32"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "14",
+        "cnt": "35"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "15",
+        "cnt": "38"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "16",
+        "cnt": "35"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "17",
+        "cnt": "30"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "18",
+        "cnt": "30"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "19",
+        "cnt": "22"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "20",
+        "cnt": "19"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "21",
+        "cnt": "15"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "22",
+        "cnt": "10"
+    },
+    {
+        "mttrClCd": "00",
+        "tmzonCd": "23",
+        "cnt": "10"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "09",
+        "cnt": "2"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "10",
+        "cnt": "6"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "11",
+        "cnt": "18"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "12",
+        "cnt": "13"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "13",
+        "cnt": "8"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "14",
+        "cnt": "6"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "15",
+        "cnt": "7"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "16",
+        "cnt": "12"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "17",
+        "cnt": "10"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "18",
+        "cnt": "16"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "19",
+        "cnt": "16"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "20",
+        "cnt": "3"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "21",
+        "cnt": "3"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "22",
+        "cnt": "4"
+    },
+    {
+        "mttrClCd": "DG",
+        "tmzonCd": "23",
+        "cnt": "3"
+    },
+    {
+        "mttrClCd": "GS",
+        "tmzonCd": "17",
+        "cnt": "1"
+    },
+    {
+        "mttrClCd": "GS",
+        "tmzonCd": "18",
+        "cnt": "2"
+    },
+    {
+        "mttrClCd": "WS",
+        "tmzonCd": "18",
+        "cnt": "1"
+    },
+    {
+        "mttrClCd": "WS",
+        "tmzonCd": "19",
+        "cnt": "1"
+    }
+];
+    console.log(data);
+    console.log(data1);
+    const sum = $.pivotUtilities.aggregatorTemplates.sum;
+    const numberFormat = $.pivotUtilities.numberFormat;
+    const intFormat = numberFormat({digitsAfterDecimal:0});
+    $(function(){
+        $("#output").pivotUI(
+            data1,
+            {
+                rows: ["mttrClCd"],
+                cols: ["tmzonCd"],
+                aggregator: sum(intFormat)(["cnt"]),
+                rendererName: "Bar Chart",
+                vals:[0],
+                renderers: $.extend(
+    	$.pivotUtilities.renderers, 
+      $.pivotUtilities.plotly_renderers
+    )
+            }
+        );
+     });
+</script>
+</html>

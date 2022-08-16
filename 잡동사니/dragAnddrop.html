@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: repeat(5,1fr);
+            gap:10px;
+        }
+        .box{
+            border:3px solid #666;
+            background-color: #ddd;
+            border-radius: .5em;
+            padding: 10px;
+            cursor: move;
+        }
+        .box.over{
+            border:3px dotted #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <input type="text" draggable="true" class="box" value="A" readonly>
+        <input type="text" draggable="true" class="box" value="B" readonly>
+        <input type="text" draggable="true" class="box" value="C" readonly>
+    </div>
+</body>
+<script>
+    function handleDragStart(e){
+        this.style.opacity = '0.4';
+    }
+    function handleDragEnd(e){
+        this.style.opacity = '1';
+
+    }
+    let items = document.querySelectorAll('.container .box');
+    items.forEach(function(item){
+        item.addEventListener('dragstart',handleDragStart);
+        item.addEventListener('dragend',handleDragEnd);
+    });
+
+    document.addEventListener('DOMContentLoaded',(event)=>{
+        function handleDragStart(e){
+        this.style.opacity = '0.4';
+        dragSrcEl=this;
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/html',this.value);
+
+        }
+        function handleDragEnd(e){
+        this.style.opacity = '1';
+
+        items.forEach(function (item){
+            item.classList.remove('over');
+        });
+        }
+
+        function handleDragOver(e){
+            if(e.preventDefault){
+                e.preventDefault();
+            }
+            return false;
+        }
+        
+        function handleDragEnter(e){
+            
+            this.classList.add('over');
+        }
+        function handleDragLeave(e){
+            this.classList.remove('over');
+        }
+        function handleDrop(e) {
+        e.stopPropagation(); // stops the browser from redirecting.
+        console.log(dragSrcEl);
+      
+        if(dragSrcEl !== this){
+            dragSrcEl.value = this.value;
+            this.value = e.dataTransfer.getData('text/html');
+        }
+        return false;
+        }
+        let items = document.querySelectorAll('.container .box');
+        items.forEach(function(items){
+            items.addEventListener('dragstart', handleDragStart);
+            items.addEventListener('dragover', handleDragOver);
+            items.addEventListener('dragenter', handleDragEnter);
+            items.addEventListener('dragleave', handleDragLeave);
+            items.addEventListener('dragend', handleDragEnd);
+            items.addEventListener('drop', handleDrop);
+        });
+    });
+</script>
+</html>

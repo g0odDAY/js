@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <canvas id="myChart" width="500" height="400"></canvas>
+</body>
+<script>
+
+</script>
+<script>
+    let data = {
+        labels:['A00','A01'],
+        datasets:[
+            {
+                label:'00',
+                data :[19,54],
+                backgroundColor:'#4169e1'
+            },
+            {
+                label:'CH',
+                data :[2,32],
+                backgroundColor:'#87ceeb'
+            },
+            {
+                label:'DG',
+                data :[7,1],
+                backgroundColor:'#b0e0e6'
+            },
+            {
+                label:'GS',
+                data :[2,10],
+                backgroundColor:'#D3D3D3'
+            },
+        ],
+        
+    };
+
+    let options = {
+        responsive:false,
+        scales:{
+            x:{
+                stacked:true,
+                display:false,
+            },
+            y:{
+                stacked:true,
+                display:false,
+            },
+            indexAxis:'y'
+        }
+    };
+    let ctx = document.getElementById("myChart");
+    const myChart = new Chart(ctx,{
+        type:'bar',
+        data:data,
+        options:options
+    })
+</script>
+</html>

@@ -16,12 +16,45 @@
         <p id="demo"></p>
 
 
+        
 
-
-    
+    <svg width="500" height="500"></svg>
+    <div id="pie"></div>
     </body>
     <script>
-            
-            
+       const dataFile = [5,10,15,20,25,30,35,40,45,50];
+       const color = ['skyblue','blue','lime','red','yellowgreen','violet','blueviolet','chocolate','darkgreen','yellow'];
+       const svg = d3.select("svg");
+       svg.selectAll('bar')
+          .data(dataFile)
+          .enter().append('rect')
+          .attr('fill',(d,i) => {return color[i]})
+          .attr('height',(d,i)=>{return d})
+          .attr('width',40)
+          .attr('x',(d,i) => {return 50*i})
+          .attr('y',(d,i) =>{return 100 -dataFile[i]});
+
+       const width = 450;
+       const height = 450;
+       const outerRadius = Math.min(width,height)/2;
+       const innerRadius = outerRadius * .5;
+       const color1 = d3.scale.category20();
+       let dataSet =[
+        {name:"동화약품",value:238500},
+        {name:"cj대한통운",value:160500},
+        {name:"두산",value:100500},
+        {name:"대림산업",value:99900},
+        {name:"삼양홀딩스",value:784000}
+       ];
+       let vis = d3.select("#pie")
+                   .append("svg:svg")
+                   .attr("width",width)
+                   .attr("height",height)
+                   .append("svg:g")
+                   .attr("transform","translate("+outerRadius+","+outerRadius+")")
+                   .data([dataSet]);
+
+        let arc = d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius);
+        let pie = d3.layout.pie().value(function(d){return d.value;});
     </script>
 </html>
