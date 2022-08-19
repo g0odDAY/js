@@ -4180,7 +4180,7 @@ const mixedChart = new Chart(ctx,{
     }
 });
 function makeDataObj(data){
-    console.log(data);
+    console.log("makeDataObj",data);
     const arry = [];
     for(let i = 0;i<data.length;i++){
         const r = Math.floor(Math.random() * 255) + 1;
@@ -4201,6 +4201,7 @@ function makeDataObj(data){
 function makeBarDataSet(data){
     data[0].shift(0);
     let label = data[0];
+    console.log("makeBarDataSet",data);
     let arry=[];
     for(let i=1;i<data.length;i++){
         let innerObj = {};
