@@ -211,3 +211,126 @@ console.log(_some([0,null,2]));
 console.log(_some([0,null,false]));
 console.log(_every([0,null,2]));
 console.log(_every([0,null,false]));
+
+_compose=function(){
+    let args=arguments;
+    console.log("args",args);
+    let start = args.length-1;
+    return function(){
+        let i = start;
+        let result = args[start].apply(this,arguments);
+        while(i--) result = args[i].call(this,result);
+        return result;
+    }
+}
+let greet =name=> `hi: ${name}`;
+let exclaim = statement => statement.toUpperCase()+"!";
+const welcome =_compose(greet,exclaim);
+console.log(welcome("rbqhr"));
+_some = _compose(not,not,positive);
+_every = _compose(beq(-1),negativeIndex);
+
+function f1() {}
+let a = typeof f1 =='function' ? f1 :function(){};
+console.log(a);
+
+function f2(){
+    return function (){};
+}
+console.log(f2());
+
+console.log((function(a,b){return a+b})(10,9));
+function callAndAdd(a,b){
+    return a()+b();
+}
+console.log(callAndAdd(function(){return 10;},function(){return 5;}));
+
+var a1=20;
+var b1=30;
+function f1(){
+    return a1+b1;
+}
+console.log(f1());
+function f2(){
+    let a =20;
+    let b=30;
+    function f3(c,d){
+        return c+d;
+    }
+    return f3;
+}
+var f4 =f2();
+console.log(f4(5,7));
+function ff4(){
+    let a=20;
+    let b=30;
+    function f5(){
+        return a+b;
+    }
+    return f5();
+}
+console.log(ff4());
+function f6(){
+    let a =39;
+    function f7(b){
+        return a+b;
+
+    }
+    return f7;
+}
+let f8 =f6();
+console.log(f8(11));
+console.log(f8(11));
+function f9(){
+    let a=10;
+    let f10=function(c){
+        return a+b+c;
+    };
+    let b=20;
+    return f10;
+}
+let f11 = f9();
+console.log(f11(30));
+function add(a,b){
+    return a+b;
+}
+function sub(a,b){
+    return a-b;
+}
+function callWith(val1){
+    return function(val2,func){
+        return func(val1,val2);
+    }
+}
+var callWith10 = callWith(10);
+console.log(callWith10(210,add));
+console.log(callWith(10)(15,add));
+console.log(callWith(10)(15,sub));
+
+console.log(callWith([1,2,3])(v=>v*2,_map));
+
+_get = (list,idx)=> list[idx];
+const callWithUsers=callWith([
+    {id:2,name:'HA',age:25},
+    {id:4,name:'PJ',age:28},
+    {id:5,name:'JE',age:27}
+]);
+console.log(callWithUsers(0,_get));
+console.log(callWithUsers(user => user.age > 27,_find));
+console.log(callWithUsers(user => user.age > 25,_filter));
+Function.prototype.partial=function (){
+    let fn = this,args=Array.prototype.slice.call(arguments);
+    return function(){
+        let arg = 0;
+        for(let i=0;i<args.length && arg<arguments.length;i++){
+            if(args[i] === undefined) args[i] = arguments[arg++];
+            return fn.apply(this,args);
+        };
+    };
+}
+function abc(a,b,c){
+    console.log(a,b,c);
+
+}
+let ac = abc.partial(undefined,'b',undefined);
+console.log(ac('a','c'));
