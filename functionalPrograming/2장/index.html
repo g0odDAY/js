@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.4/underscore-min.js" integrity="sha512-uLKRd6hCNYAENFn2h7w0p5hrUAz21bAu/85eqSqmQ1Y565lFInwRga9Lgk+QAAR9QvNfSlZjnEb+HHfzkAC/8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+
+</body>
+<script>
+    function L(str){
+        let splitted = str.split('=>');
+        return new Function(splitted[0],'return ('+splitted[1]+');');
+    }
+    console.time('1');
+    var arr = Array(10000);
+    _.map(arr,(v,i)=> i *2);
+    console.timeEnd('1');
+
+    console.time('2');
+    _.map(arr,L('v,i => i *2'));
+    console.timeEnd('2');
+    console.time('3');
+    _.map(arr,eval("L('v,i=>i*2')"));
+    console.timeEnd('3');
+    console.time('4');
+    _.map(arr,function(v,i){
+        return function(v,i){
+            return i*2;
+        }(v,i);
+    });
+    console.timeEnd('4');
+    console.time('5');
+    _.map(arr,function(v,i){
+        return L('v,i => i*2')(v,i);
+    });
+    console.timeEnd('5');
+    function L2(str){
+        if(L2[str]) return L2[str];
+        let splitted = str.split('=>');
+        return L2[str] = new Function(splitted[0],'return ('+splitted[1]+');');
+    }
+
+
+    console.time('6');
+    _.map(arr,function(v,i){
+        return L2('v,i => i*2')(v,i);
+    });
+    console.timeEnd('6');
+
+    var f1 =function (){
+        console.log(f1);
+    }
+    f1();
+var f2 = f1;
+f1 = 'hi~!~';
+console.log(f2());
+
+var f1= function (){
+    console.log(arguments.callee);
+}
+f1();
+
+var f2 = f1;
+f1 = null;
+f2();
+console.clear();
+</script>
+</html>

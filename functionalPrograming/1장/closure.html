@@ -6,6 +6,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.13.4/underscore-min.js" integrity="sha512-uLKRd6hCNYAENFn2h7w0p5hrUAz21bAu/85eqSqmQ1Y565lFInwRga9Lgk+QAAR9QvNfSlZjnEb+HHfzkAC/8Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 <body>
 <div class="user-list"></div>
@@ -55,5 +56,19 @@
     $('.user-list').append(
       _.map(users,user => $('<button>').text(user.name).click(()=>console.log(user.name)))
     );
+    function abc(a,b,c){
+        console.log(a,b,c);
+    }
+    let ac = _.partial(abc,_,'b');
+    ac('a','c');
+    let b = _.partial(abc,'a',_,'c');
+    b('b');
+
+    let bj ={
+        name:"bj",
+        greet:_.partial((a,b)=> a+this.name+b,"저는","입니다.")
+    }
+    console.log(bj.greet());
+    console.log(bj.greet.call({name:'HA'}));
 </script>
 </html>

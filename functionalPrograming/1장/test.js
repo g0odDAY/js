@@ -319,18 +319,33 @@ console.log(callWithUsers(0,_get));
 console.log(callWithUsers(user => user.age > 27,_find));
 console.log(callWithUsers(user => user.age > 25,_filter));
 Function.prototype.partial=function (){
-    let fn = this,args=Array.prototype.slice.call(arguments);
+    let fn = this,_args=arguments;
     return function(){
+        let args = Array.prototype.slice.call(_args);
         let arg = 0;
-        for(let i=0;i<args.length && arg<arguments.length;i++){
+        for(var i =0;i < args.length && arg < arguments.length; i++)
             if(args[i] === undefined) args[i] = arguments[arg++];
-            return fn.apply(this,args);
-        };
+        return fn.apply(this,args);
     };
 }
 function abc(a,b,c){
     console.log(a,b,c);
-
 }
 let ac = abc.partial(undefined,'b',undefined);
-console.log(ac('a','c'));
+ac('a','c');
+let ac2 =abc.partial(undefined,'b');
+ac2('a','c');
+function add(){
+    let result = 0;
+    for(let i =0;i<arguments.length;i++){
+        result += arguments[i];
+    }
+    return result;
+}
+console.log(add(1,2,3,4,4444));
+var add2 = add.partial(undefined,2);
+console.log(add2(1,3,4,5));
+add3 = add.partial(undefined,undefined,3,undefined,undefined,);
+console.log(add3(1,2,4,5));
+console.log(add3(50,50,50,50));
+console.log(add3(150,150,150,150));
