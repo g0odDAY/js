@@ -117,3 +117,75 @@ function flatten(arr){
 }
 
 console.log(flatten([1,[2],[3,4]]));
+function test(a,b,c){
+    console.log("abc",a,b,c);
+    console.log('this',this);
+    console.log('arguments',arguments);
+}
+test(10);
+test(10,undefined);
+test(10,20,30);
+function test2(a,b){
+    b = 10;
+    console.log(arguments);
+}
+test2(1);
+test2(1,2);
+function test3(a,b){
+    arguments[1]=10;
+    console.log(b);
+}
+test3(1,2);
+let o1 = {name:"obj1"};
+o1.test = test;
+o1.test(3,2,1);
+
+let a1 = [1,2,3];
+a1.test = test ;
+a1.test(3,3,3);
+
+let o1_test = o1.test;
+o1_test(5,6,7);
+(a1.test)(8,9,10);
+a1['test'](8,9,10);
+
+test.call(undefined,1,2,3);
+test.call(null,1,2,3);
+test.call(void 0,1,2,3);
+test.call(o1,3,2,1);
+test.call(1000,3,2,1);
+o1.test.call(undefined,3,2,1);
+o1.test.call([50],1,2,3);
+console.clear();
+test.apply(o1,{0:3,1:2,2:1,length:3});
+(function(){
+    test.apply(1000,arguments);
+})(3,2,1);
+console.clear();
+(function(){
+    arguments.length--;
+    test.apply(1000,arguments);
+})(3,2,1);
+
+test.apply(1000,[1].concat([2,3]));
+console.clear();
+let slice = Array.prototype.slice;
+function toArray(data){
+    return slice.call(data);
+}
+function rest(data,n){
+    return slice.call(data,n||1);
+}
+let arr1= toArray({0:1,1:2,length: 2});
+console.log(arr1);
+arr1.push(3);
+console.log(arr1);
+
+console.log(rest([1,2,3]));
+console.log(rest([1,2,3],1));
+
+var a =false;
+var c = a ? 10 : function f(arr,v){
+    return arr.length ? f(arr,v + arr.shift()) : v;
+}([1,23,33],77);
+console.log("c",c);
