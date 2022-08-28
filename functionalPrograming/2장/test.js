@@ -189,3 +189,81 @@ var c = a ? 10 : function f(arr,v){
     return arr.length ? f(arr,v + arr.shift()) : v;
 }([1,23,33],77);
 console.log("c",c);
+// console.clear();
+// console.log(1);
+// setTimeout(function(){
+//     console.log(3);
+// },1000);
+// console.log(2);
+// console.clear();
+
+var add = function(a,b,callback){
+    setTimeout(function(){
+        callback(a+b);
+    },3000);
+};
+// console.log(add(10,20,function(r){
+//     console.log(r);
+// }));
+console.clear();
+function wrap(func){
+    return function(){
+        return func.apply(null,arguments);
+    }
+};
+
+var add =wrap(function(a,b,callback){
+    setTimeout(function(){
+        callback(a+b);
+    },1000)
+});
+
+add(10,5,function(r){
+    console.log(r);
+});
+function _async(func){
+    return function(){
+        arguments[arguments.length++] = function(result){
+            //console.log("_async result : ",result);
+            _callback(result);
+        };
+        (function wait(args){
+            for(var i=0;i<args.length;i++)
+                if(args[i] &&args[i].name == '_async_cd_receiver')
+                    return args[i](function(arg){args[i] = arg; wait(args);});
+            func.apply(null,args);
+        })(arguments)
+
+        var _callback;
+        function _async_cb_receiver(callback){
+            _callback = callback;
+        }
+        return _async_cb_receiver;
+    }
+}
+
+var add = _async(function(a,b,callback){
+    setTimeout(function(){
+        console.log("add",a,b);
+        callback(a+b);
+    },1000);
+});
+var sub = _async(function(a,b,callback){
+    setTimeout(function(){
+        console.log("add",a,b);
+        callback(a-b);
+    },1000);
+});
+var div = _async(function(a,b,callback){
+    setTimeout(function(){
+        console.log("add",a,b);
+        callback(a/b);
+    },1000);
+});
+var log = _async(function(val){
+    setTimeout(function(){
+        console.log("val",val);
+    },1000);
+});
+
+//log(div(sub(add(10,15),5),10));
