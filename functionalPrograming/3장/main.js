@@ -49,3 +49,5 @@ const filter2=function (data,predicate,limit){
     return list2;
 };
 console.log(filter2(list,num => num%2 == 0,7));
+
+console.log(filter2(list,num => num%2 ==0,10));
