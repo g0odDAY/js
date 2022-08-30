@@ -30,3 +30,25 @@ function one(n){
 
 const a = one(3);
 console.log(a(10));
+
+//36
+function gugudan(num){
+    for(let i = 1;i<10;i++){
+        console.log(num * i);
+    }
+}
+gugudan(9);
+
+
+//37
+
+var arr11 = ['원범','원범','혜원','혜원','혜원','혜원','유진','유진'];
+const vote = arr11.reduce((acc,cur)=>{
+        console.log(acc,cur);
+        acc[cur] = (acc[cur] || 0)+1;
+        return acc;
+        },{});
+
+console.log(vote)
+
+
