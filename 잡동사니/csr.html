@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototype을 이용한 모듈 패턴</title>
+  <script src="../js/csr.js"></script>
+</head>
+<body>
+<div>
+  <ul id="list"></ul>
+</div>
+
+<script type="text/javascript">
+  // 리스트 요소 탐색
+  const list = document.getElementById("list");
+
+  // 리스트에 10개의 아이템을 추가
+  Array(10).fill(1).forEach(function(data, idx){
+    const key = data+idx;
+
+    // 아이템 요소 생성
+    const li = document.createElement("li");
+
+    // 아이템에 모듈을 적용
+    const instance = li.myListItem({
+      id: "item-"+key,
+      parent: list
+    });
+  console.log(li);
+    // 리스트에 아이템 추가
+    list.appendChild(li);
+  });
+</script>
+</body>
+</html>
