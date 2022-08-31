@@ -3,6 +3,8 @@
     "nodemon": "^2.0.19"
   },
   "dependencies": {
+    "jquery": "^3.6.1",
+    "jsdom": "^20.0.0",
     "lodash": "^4.17.21",
     "underscore": "^1.13.4",
     "update": "^0.7.4"
