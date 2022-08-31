@@ -111,7 +111,7 @@ var isArrayLike = list =>{
     let new_list = [];
     if(isArrayLike(data)){
         for(let i=0,len=data.length;i<len;i++){
-            new_list.push(iteratee(data[i],i,data));
+            new_list.push(iterate(data[i],i,data));
         }
     }else{
         for(let key in data){
@@ -134,3 +134,57 @@ arg1 = function(a,b){
 _.keys = list => _.map(list,arg1);
 console.log(_.keys({id:5,name:"JE",age:27}));
 console.log(arg1({id:5,name:"JE",age:27}));
+
+_.each = (list,iteratee)=>{
+    if(isArrayLike(list)){
+        for(let i =0,len=list.length;i<len;i++){
+            iteratee(list[i],i,list);
+        }
+    }else{
+        for(let key in list){
+            if(list.hasOwnProperty(key)) iteratee(list[key],key,list);
+        }
+    }
+    return list;
+}
+_.each([1,2,3],console.log);
+_.each({name:"rbqhr",id:9,age:30},console.log);
+
+function bloop(new_data,body){
+    return function(data,iteratee){
+        let result = new_data(data);
+        if(isArrayLike(data)){
+            for(let i = 0,len=data.length;i<len;i++){
+                body(iteratee(data[i],i,data),result);
+            }
+        }else{
+            for(let key in data){
+                if(data.hasOwnProperty(data[key])) body(iteratee(data[key],key,data),result);
+            }
+        }
+        return result;
+    }
+}
+console.clear();
+_.map = bloop(() => [],(val,obj)=> obj.push(val));
+_.each = bloop(v => v,()=>{});
+_.each([1,2,3],console.log);
+//_.each({name:"rbqhr",id:9,age:30},console.log);
+console.log("map",_.map([1,2,3,4],v=> v*9));
+
+_.object = obj =>{
+    var type = typeof obj;
+    console.log("!!obj",!!obj);
+    return type === 'function' || type === 'object' && !!obj;
+}
+// console.log(_.object({name:"rbqhr"}));
+// console.log(_.object([1,2,3,4]));
+console.log(_.object(10));
+console.log(_.object(null));
+console.log(typeof 10);
+console.log(typeof null);
+_.keys = obj => _.object(obj) ? Object.keys(obj) : [];
+// console.log(_.keys({name:"rbqhr"}));
+// console.log(_.keys([1,2,3,4,]));
+// console.log(_.keys(10));
+// console.log(_.keys(undefined));
