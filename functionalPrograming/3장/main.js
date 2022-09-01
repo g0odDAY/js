@@ -188,3 +188,57 @@ _.keys = obj => _.object(obj) ? Object.keys(obj) : [];
 // console.log(_.keys([1,2,3,4,]));
 // console.log(_.keys(10));
 // console.log(_.keys(undefined));
+_.filter((list,predicate)=>{
+    let new_list =[];
+    _.each(list,(val,idx,list)=>{
+        if(predicate(val,idx,list)) new_list.push(val);
+    })
+    return new_list;
+});
+let obj = {
+    a:1,
+    b:2,
+    c:3
+};
+console.log(_.filter(obj,v=>v>1));
+const bloop1 = (new_data,body)=>{
+    return (data,iter_predi) =>{
+        let result = new_data(data);
+        if(isArrayLike(data)){
+            for(let i = 0 ,len=data.length;i<len;i++){
+                body(iter_predi(data[i],i,data),result,data[i]);
+            }
+        }else{
+            for(let i =0,len=data.length;i<len;i++){
+                body(iter_predi(data[keys[i]],keys[i],data),result,data[keys[i]]);
+            }
+        }
+    }
+    return result;
+
+}
+_.array = () => [];
+_.filter=bloop1(_.array,(bool,result,val)=> {
+    if(bool)result.push(val)
+});
+
+_.toArray(arry=>{
+    return Array.from(arry) ? arry : _.values(arry);
+})
+_.rest((arr,idx)=>{
+    return _.toArray(arr).slice(idx || 1);
+});
+
+function reverseFnc(arr){
+    return _.toArray(arr).reverse();
+}
+console.log(reverseFnc([1,2,3]));
+console.log(reverseFnc({}));
+
+const rester = (func,num)=>{
+    return () => func.apply(null,_.rest(arguments,num));
+};
+
+const sum = (a,b,c,d)=>(a||0)+(b||0)+(c||0)+(d||0);
+
+console.log(rester(sum,1)(1,2,3,4));
