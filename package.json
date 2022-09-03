@@ -1,12 +1,15 @@
 {
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   },
   "dependencies": {
     "jquery": "^3.6.1",
     "jsdom": "^20.0.0",
     "lodash": "^4.17.21",
     "underscore": "^1.13.4",
-    "update": "^0.7.4"
+    "update": "^0.7.4",
+    "vue": "^3.2.38"
   }
 }
