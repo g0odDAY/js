@@ -6,13 +6,13 @@ const $ = require("jquery")(window);
 [1,2,3].forEach((val,idx,list)=>console.log(val,idx,list));
 _.each({a:1,b:2},(val,idx,obj)=> console.log(val,idx,obj));
 let users = [
-    {id:1,name:'ID',age:32,team_id:2},
-    {id:2,name:'HA',age:25,team_id:2},
-    {id:3,name:'BJ',age:32,team_id:1},
-    {id:4,name:'PJ',age:28,team_id:1},
-    {id:5,name:'JE',age:27,team_id:2},
-    {id:6,name:'JM',age:32,team_id:1},
-    {id:7,name:'HI',age:24,team_id:2}
+    {id:1,name:'ID',age:32},
+    {id:2,name:'HA',age:25},
+    {id:3,name:'BJ',age:32},
+    {id:4,name:'PJ',age:28},
+    {id:5,name:'JE',age:27},
+    {id:6,name:'JM',age:32},
+    {id:7,name:'HI',age:24}
 ];
 
 console.log(_.pluck(users,'name'));
@@ -242,3 +242,121 @@ const rester = (func,num)=>{
 const sum = (a,b,c,d)=>(a||0)+(b||0)+(c||0)+(d||0);
 
 console.log(rester(sum,1)(1,2,3,4));
+
+_.if=function (vali,func,alter){
+    return function(){
+        console.log("ifs",arguments);
+        console.log("ifs",vali.apply(null,arguments));
+        return vali.apply(null,arguments) ? func.apply(null,arguments) : alter && alter.apply(null,arguments);
+    }
+}
+
+function sub(a,b){
+    return a-b;
+};
+
+let sub2 = _.if(
+    function(a,b){return a>=b;},
+    sub,
+    function() {return new Error("a가 b보다 작습니다.")}
+)
+
+console.log(sub2(4,3));
+_.toArray2 = _.if(Array.isArray,idtt,_.values);
+console.log(_.toArray2([1,2,3]));
+console.log(_.toArray2({0:1,1:3,length: 2}));
+
+_.constant = function(v){
+    return function(){
+        return v;
+    }
+};
+
+let squared = _.if(
+    function(a){ return toString.apply(a) == '[object Number]';},
+    function(v){ return v*v},
+    _.constant(0)
+);
+console.log(squared(5));
+console.log(squared("rks"));
+console.log(toString.apply(8));
+console.log(toString.apply("rksdlf"));
+_.negate = function(func){
+    return function(){
+        return !func.apply(null,arguments);
+    }
+}
+_.reject = bloop(_.array,_.if(_.negate(_.idtt),rester(_.push)));
+
+
+function bloop(new_data,body,stopper){
+    return function(data,iter_predi){
+        let result = new_data(data);
+        let memo;
+        if(isArrayLike(data)){
+        for(let i =0,len = data.length;i<len;i++) {
+            memo = iter_predi(data[i], i, data);
+            if (!stopper) body(memo, result, data[i], i);
+            else if (stopper(memo)) return body(memo, result, data[i], i);
+        }
+        }else{
+            for(let i =0,keys = _.keys(data),len=keys.length;i<len;i++){
+                memo = iter_predi(data[keys[i]],keys[i],data);
+                if(!stopper) body(memo,result,data[keys[i]],keys[i]);
+                else if(stopper(memo)) return body(memo,result,data[keys[i]],keys[i]);
+
+            }
+        }
+        return result;
+    }
+}
+
+_.noop = function() {};
+_.idtt = function(v) {return v;};
+_.find = bloop(
+    _.noop,
+    function(bool,result,val){return val;},
+    _.idtt
+);
+console.log(_.find([10,20,30,40,50],v => v > 320));
+
+_.findIndex = bloop(_.constant(-1),rester(_.idtt,3),_.idtt);
+console.log(_.findIndex([1,2,3,4,5],function(v){return v<2}));
+
+console.log(_.reduce([1,2,3],function(memo,val,idx,list){
+    console.log("memo:",memo,"val:",val,"idx:",idx,"list:",list);
+    return memo+val;
+},0));
+console.log(_.reduce([[0,1],[2,3],[4,5]],function(memo,val,idx,list){
+    console.log("memo:",memo,"val:",val,"idx:",idx,"list:",list);
+    return memo.concat(val);
+},[]));
+
+console.log(_.reduce(users,function(names,user){
+    if(user.age >= 30) names.push(user.name);
+    return users;
+},[]));
+let users1 = [
+    {id:1,name:'ID',age:32},
+    {id:2,name:'HA',age:25},
+    {id:3,name:'BJ',age:32},
+    {id:4,name:'PJ',age:28},
+    {id:5,name:'JE',age:27},
+    {id:6,name:'JM',age:32},
+    {id:7,name:'HI',age:24}
+];
+console.log(_.reduce(users1,function(info,user){
+    let group = user.age - user.age % 10;
+    info.count[group] = (info.count[group] || 0) +1;
+    info.total[group] = (info.total[group] || 0) +user.age;
+
+    return info;
+},{count:{},total:{}}));
+
+_.reduce = (data,iteratee,memo) =>{
+    _.each(data,(val,idx,data)=>{
+        memo = iteratee(memo,val,idx,data);
+    });
+    return memo;
+
+}
