@@ -17,6 +17,8 @@
         {id:2,name:'PJ',age:28},
         {id:3,name:'JE',age:27},
     ];
+
+
     //Good example
     // $(".user-list").append(
     //     _.map(users,function(user){
@@ -68,7 +70,5 @@
         name:"bj",
         greet:_.partial((a,b)=> a+this.name+b,"저는","입니다.")
     }
-    console.log(bj.greet());
-    console.log(bj.greet.call({name:'HA'}));
 </script>
 </html>
