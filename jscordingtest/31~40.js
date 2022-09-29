@@ -61,15 +61,15 @@ console.log(arr37.reduce((acc,cur)=>{
     return acc;
 },{}));
 
-// 강사님 코드
+
 let n = 5;
-let scores = [100, 88, 76, 88, 76];
+let scores = [97,86,75,66,55,97,85,97,97,95];
 
-console.log(solution(n, scores));
-
+console.log("solution",solution(scores.length, scores));
+console.log(scores.sort((a,b)=>a-b));
 function solution(n, scores) {
     let answers = Array.from({ length: n }, () => 1);
-
+    console.log(answers);
     for (let i = 0; i < n; i++) {
         for (let j = 0; j < n; j++) {
             if (scores[j] > scores[i]) {
@@ -77,23 +77,5 @@ function solution(n, scores) {
             }
         }
     }
-    return answers;
+    return answers.sort((a, b) => a - b);
 }
-const regex = /\d{3}-\d{3}-\d{4}/;
-console.log(regex.test('010-123-4567'));
-console.log(regex.test('010-1223-4567'));
-console.log(regex.test('010-d23-4567'));
-
-const text = "안녕하세요 제 번호는 010-123-4567이고, 010-123-4567입니다.";
-console.log(text.replace(regex, '111-111-1111'));
-console.log(text.match(regex));
-
-const text1 = '대나무 빨대 a급 제품은 10개 남아있습니다. 010-1234-5678로 Call Me~!';
-const regex1 = /[^0-9]/g;
-console.log(regex1.test(text1));
-console.log(text1.match(regex1));
-
-const tel = '01039575452';
-const telregex = /\d(?=\d{4})/g;
-console.log(tel.match(telregex, tel));
-
