@@ -87,3 +87,18 @@ console.log("cnt",cnt);
 let str39 = 'hqllo my namq is hyqwon';
 
 console.log(str39.split('').map(n=>n.charCodeAt(0)).map(n=> n === 113 ? 101 : n).map(n=>String.fromCharCode(n)).join(''));
+
+//40
+
+const restrict = 50;
+const people = 5;
+const arr40 = [50,5,40,20,20,20];
+let sum40 = 0;
+let cnt40 = 0;
+arr40.map(n =>{
+    sum40 += n;
+    if(sum40 <= restrict){
+        cnt40++;
+    }
+});
+console.log(cnt40);
