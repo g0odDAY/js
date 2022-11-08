@@ -64,18 +64,26 @@ console.log(arr37.reduce((acc,cur)=>{
 
 let n = 5;
 let scores = [97,86,75,66,55,97,85,97,97,95];
+scores.map(n=> parseInt(n,10));
+scores.sort((a,b)=> a-b);
+console.log("sc",scores);
+let cnt = 0;
+let arr38 = [];
 
-console.log("solution",solution(scores.length, scores));
-console.log(scores.sort((a,b)=>a-b));
-function solution(n, scores) {
-    let answers = Array.from({ length: n }, () => 1);
-    console.log(answers);
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            if (scores[j] > scores[i]) {
-                answers[i]++;
-            }
-        }
+while(arr38.length < 3){
+    let n = scores.pop();  //55
+    console.log("n",n);
+    if(!arr38.includes(n)){// false -> true
+        arr38.push(n);
     }
-    return answers.sort((a, b) => a - b);
+    cnt +=1;
 }
+
+console.log(arr38);
+console.log("cnt",cnt);
+
+//39
+
+let str39 = 'hqllo my namq is hyqwon';
+
+console.log(str39.split('').map(n=>n.charCodeAt(0)).map(n=> n === 113 ? 101 : n).map(n=>String.fromCharCode(n)).join(''));
