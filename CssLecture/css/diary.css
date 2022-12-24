@@ -1,44 +1,126 @@
-*{
+* {
     box-sizing: border-box;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
-.container{
+
+.container {
     background: #eeeeee;
     display: flex;
     flex-direction: row;
+    justify-content: center;
     align-items: center;
-    padding:50px 0;
+    padding: 50px 0;
 }
-.wrapper{
+
+.wrapper {
     width: 620px;
-    padding:40px 30px;
+    padding: 40px 30px;
     background-color: white;
-    border:1px solid gray;
+    border: 1px solid gray;
     border-radius: 10px;
-    margin: 50px;
 }
-.wrapper__head{
-    border-bottom:4px dashed grey;
+
+.wrapper__head {
     padding-bottom: 20px;
     margin-bottom: 20px;
+    border-bottom: 1px dashed gray;
 }
-.wrapper__head__title{
+
+.wrapper__head__title {
+    font-size: 32px;
+    background-color: orange;
+    color: white;
     text-align: center;
-    background-color: yellowgreen;
-    color : white;
-    padding:5px 0;
+    padding: 5px;
     margin-bottom: 10px;
 }
-#point{
-    color:coral;
-    font-weight: bolder;
-    text-decoration: underline;
+
+.wrapper__head__sub-title {
+    font-size: 18px;
+    padding: 10px 0;
 }
-#weather{
+
+#point {
+    color: orange;
+    font-size: 22px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-top: 15px;
+    display: block;
+}
+
+.wrapper__body {
+    border: 1px solid #dddddd;
+    padding: 20px 30px;
+}
+
+.diary-title {
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #f4f4f4;
+    margin-bottom: 20px;
+}
+
+.kimchi {
+    color: red;
+    font-weight: 600;
+}
+
+.egg {
+    color: orange;
+    font-weight: 600;
+}
+
+.highlight {
+    font-size: 22px;
+    color: blue;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.diary-date {
+    color: #919191;
+    font-size: 14px;
     text-align: right;
 }
-.wrapper__body{
-    border: 1px solid #dddddd;
-    padding : 20px 20px;
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+.header__inner{
+    width: 600px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.menu__ul{
+    display: flex;
+    flex-direction: row;
+}
+.menu__ul li{
+    list-style: none;
+}
+.menu__ul li a{
+    display: block;
+    padding: 25px 20px;
+    text-decoration: none;
+    color: black;
+}
+.menu__ul li a:hover{
+    color: orange;
+}
+.logo{
+    padding-top: 12px;
+}
+.user{
+    padding-top: 20px;
+}
+.logo h1 a{
+    text-decoration: none;
+    color : orange;
+
 }
