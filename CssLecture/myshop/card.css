@@ -6,17 +6,16 @@ html,body{
     margin: 0;
 }
 .itemWrap{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,1fr);
+    grid-gap:10px 5px;
 }
 .item{
-    width: calc(25% - 7px);
     aspect-ratio: 6 / 5;
-
     position: relative;
     overflow: hidden;
+    border-radius: 10px;
 }
 .itemBox{
     width: 100%;
@@ -49,11 +48,13 @@ html,body{
     font-size: 22px;
     font-weight: 500;
     opacity: 0;
+    transform: translateY(50px);
 }
 .textBox__price{
     font-size: 16px;
     font-weight: 400;
     opacity: 0;
+    transform: translateY(50px);
 }
 .item:after{
     content: "";
@@ -76,9 +77,11 @@ html,body{
 }
 .item:hover .textBox__name{
     opacity: 1;
+    transform: translateY(0px);
 }
 .item:hover .textBox__price{
     opacity: 1;
+    transform: translateY(0px);
 }
 .item:after,
 .item .imgBox img,
@@ -86,3 +89,7 @@ html,body{
 .item .textBox__price{
     transition: all 0.4s ease-in-out;
 }
+.item .textBox__price{
+    transition: all 0.4s ease-in-out 0.16s;
+}
+

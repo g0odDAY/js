@@ -16,6 +16,7 @@
     color: #eeeeee;
 
 }
+
 #text1{
     transition: transform 0.4s ease-in-out;
 }
@@ -43,9 +44,6 @@
 #text9{
     transition: transform 0.4s ease-in-out 0.8s;
 }
-
-
-
 
 .container:hover span{
     transform: translateY(-20px);
