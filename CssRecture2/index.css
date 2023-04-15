@@ -1,0 +1,16 @@
+div{
+    display: inline-block;
+}
+.box1{
+    padding: 5px;
+    margin: 10px;
+    border:1px solid #3c6ffa;
+    height: 300px;
+    width: 50%;
+
+}
+.box2{
+    padding: 5px;
+    margin: 10px;
+    border:1px solid #3c6ffa;
+}

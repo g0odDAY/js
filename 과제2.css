@@ -1,0 +1,45 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    padding: 0;
+    width: 80%;
+    margin: auto;
+}
+header{
+    background: #ed2a61;
+    height: 5rem;
+    margin: 0.8rem;
+}
+nav{
+
+    background: #3c6ffa;
+    height: 5rem;
+    margin: 0.8rem;
+}
+section{
+    width:70%;
+    height: 30rem;
+    margin: 0.8rem;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+article{
+    width: 200px;
+    height: 200px;
+}
+aside{
+    width: 20%;
+    height: 30rem;
+    background: #8b5cf3;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0.8rem;
+}
+footer{
+    background: #d0d0d0;
+    height: 5rem;
+    margin: 0.8rem;
+}
+

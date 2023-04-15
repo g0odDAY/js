@@ -1,0 +1,82 @@
+main {
+    padding-top: 2rem;
+}
+.background{
+    background: url('../img/plans-background.jpg') center/cover;
+    filter:grayscale(40%);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: -1;
+}
+.packages{
+    width: 80%;
+    background: #8fdf82;
+    border: 4px solid #0e441f;
+    border-left:none ;
+    margin:1rem 0;
+    position: relative;
+
+}
+.packages:hover,
+.packages:active{
+    box-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    border: 4px solid #ed2a61 !important;
+
+}
+.packages__link{
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 2rem;
+
+}
+.packages__title{
+    color: #0e441f;
+}
+.packages__badge{
+    position: absolute;
+    top:0;
+    right: 0;
+    margin: 1.2rem;
+    font-size: 0.8rem;
+    color: white;
+    background: #ff5454;
+    padding:0.5rem;
+    z-index: 10;
+
+}
+.packages__subtitle{
+    color: grey;
+}
+.packages__description{
+    background: white;
+    border: 1px solid #0e441f;
+    padding: 1rem;
+}
+.clearfix{
+    clear:both;
+}
+#plus{
+    background: rgba(231,255,220,0.95);
+}
+#free{
+    background: rgba(234,252,237,0.95);
+    float: right;
+    border-right: none;
+    border-left: 4px solid #0e441f;
+}
+#premium{
+    background: rgba(17,79,31,0.95);
+}
+#premium .packages__title{
+    color: white;
+}
+#premium .packages__subtitle{
+    color: #bbb;
+}
+@media (min-width: 40rem) {
+    .packages{
+        max-width: 900px;
+    }
+}
