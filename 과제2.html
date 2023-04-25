@@ -17,20 +17,35 @@
         <section>
             section
             <article>
-                <video controls width="300" height="200" poster="img/1.png" src="mp4/sky.mp4#t=12,17">
-                </video>
-                <iframe src="과제.html" width="300px" height=200px>
-                    <p>사용 중인 브라우저는 iframe을 지원하지 않습니다.</p>
-                </iframe>
+                <div >
+                    <video controls width="300" height="200" poster="img/1.png" src="mp4/sky.mp4#t=12,17">
+                    </video>
+                </div>
+
+                <div>
+                    <a href="#" id="name">황규복_202234-366262</a>
+                    <iframe id="screen" src="과제.html" width="300px" height=200px>
+                        <p>사용 중인 브라우저는 iframe을 지원하지 않습니다.</p>
+                    </iframe>
+                </div>
+
+
             </article>
         </section>
         <aside>
-            <p>The Rough-skinned Newt defends itself with a deadly neurotoxin.</p>
+            <p>aside</p>
         </aside>
         </div>
     </main>
 <footer>
-    footer
+    &copy footer
 </footer>
+<script>
+const name = document.querySelector('#name');
+const screen = document.querySelector('#screen');
+name.addEventListener('click',()=>{
+    screen.style.display = 'block';
+})
+</script>
 </body>
 </html>

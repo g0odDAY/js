@@ -1,12 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,500;1,100;1,300;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 *{
     box-sizing: border-box;
 }
-html{
 
-}
 body{
-    font-family: 'Alkatra', cursive;
+    font-family: 'Montserrat', sans-serif;
     margin: 0;
     overflow-x: hidden;
 }
@@ -28,23 +29,20 @@ body{
     position:fixed;
     top:0;
     left: 0;
-    z-index: 11;
+    z-index: 60;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
-.main-header > div {
-    display: inline-block;
-    vertical-align: middle;
-}
+
 .main-header__brand{
     color:#0e441f;
     text-decoration: none;
     font-weight: bold;
-
-    height: 2.5rem;
-    display: inline-block;
-    vertical-align: middle;
 }
 .main-header__brand img{
-    height: 100%;
+    vertical-align: middle;
+    height: 2.5rem;
 }
 .main-nav{
     display: none;
@@ -58,15 +56,14 @@ body{
 }
 
 .mobile-nav__item--cta a:hover,
-.mobile-nav__item--cta a:active
-{
+.mobile-nav__item--cta a:active {
     color: #ff1b68;
     background: white;
     border: none;
 }
 
 .main-footer{
-    background: #3c6ffa;
+    background: black;
     padding:1.5rem;
     margin-top: 1rem;
 
@@ -75,10 +72,12 @@ body{
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .main-footer__list{
-    margin: 1rem 0;
+    margin: 0.5rem 0;
 }
 .main-footer__list a{
     text-decoration: none;
@@ -128,17 +127,22 @@ body{
     width: 90%;
     height: 100%;
     list-style: none;
-    margin: 10% auto;
+    margin: 0 auto;
     padding: 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .mobile-nav__item {
-    margin: 1rem 0;
+    margin: 0.8rem 0;
 }
 
 .mobile-nav__item a {
-    font-size: 1.5rem;
+    font-size: 2rem;
+    text-decoration: none;
 }
 .toggle-button {
     width: 3rem;
@@ -218,6 +222,7 @@ body{
     .toggle-button{
         display: none;
     }
+
     .main-header__brand{
         height: 2rem;
         display: inline-block;
@@ -227,14 +232,12 @@ body{
         height: 100%;
     }
     .main-nav{
-        display: inline-block;
-        text-align: right;
-        width: calc(100% - 90px);
-        vertical-align: middle;
+        display: flex;
     }
     .main-nav__items{
         margin: 0;
         padding: 0;
+
     }
     .main-nav__item{
         display: inline-block;
@@ -266,8 +269,11 @@ body{
         border-radius: 8px;
     }
     /*footer*/
+    .main-footer__lists{
+        flex-direction: row;
+        justify-content: center;
+    }
     .main-footer__list{
-        display: inline-block;
         margin: 0 1rem;
     }
 }

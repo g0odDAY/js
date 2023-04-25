@@ -23,11 +23,11 @@ section{
     margin: 0.8rem;
     display: inline-block;
     vertical-align: middle;
-
+    background: yellowgreen;
 }
 article{
-    width: 200px;
-    height: 200px;
+    border: 1px solid black;
+
 }
 aside{
     width: 20%;
@@ -36,6 +36,9 @@ aside{
     display: inline-block;
     vertical-align: middle;
     margin: 0.8rem;
+}
+#screen{
+    display: none;
 }
 footer{
     background: #d0d0d0;
