@@ -48,8 +48,31 @@ li {
     margin: .5rem 0;
 }
 /* 목차 꾸미기 */
-
+li::before{
+    display: inline-block;
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #0bd;
+    margin:0 3px 4px 0;
+}
  
 /*
 데스크톱 사이즈
 ================================================ */
+@media(min-width:700px){
+    .container{
+        display: flex;
+        justify-content: space-between;
+    }
+    main{
+        width: 70%;
+    }
+    aside{
+        width: 26%;
+    }
+    .sticky{
+        position: sticky;
+        top:1rem;
+    }
+}
