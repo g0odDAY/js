@@ -329,7 +329,7 @@ input[type='checkbox'] + span::before {
 }
 /* 체크하면 체크 아이콘을 표시 */
 input[type='checkbox']:checked + span::before {
-    content: '\f00c';
+    content: '\f007';
 }
 
 /*

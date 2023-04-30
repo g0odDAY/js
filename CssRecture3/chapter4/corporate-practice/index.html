@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro@4cac1a6/css/all.css" />
     <title>Document</title>
 </head>
 <body>
@@ -57,12 +58,18 @@
                             희망 근무지
                         </th>
                         <td>
-                            <select name="" id="">
-                                <option value="">재직중</option>
-                                <option value="">학생</option>
-                                <option value="">프리랜서</option>
-                                <option value="">휴학중</option>
-                            </select>
+                            <label for="">
+                                <input type="checkbox">
+                                <span>도쿄</span>
+                            </label>
+                            <label for="">
+                                <input type="checkbox">
+                                <span>서울</span>
+                            </label>
+                            <label for="">
+                                <input type="checkbox">
+                                <span> <i class="far fa-user"></i> 제주</span>
+                            </label>
                         </td>
                     </tr>
                     <tr>
@@ -70,15 +77,22 @@
                             현재상태
                         </th>
                         <td>
-                            <textarea name="" id="" cols="30" rows="10" placeholder="예 : 지금까지의 이력, 배운것, 현재 수행 중인 프로젝트 등"></textarea>
+                            <div class="select-box">
+                                <select name="" id="">
+                                    <option value="">재직중</option>
+                                    <option value="">학생</option>
+                                    <option value="">프리 랜서</option>
+                                    <option value="">휴학중</option>
+                                </select>
+                            </div>
+
                         </td>
                     </tr>
                     <tr>
                         <th>
                             자기소개
                         </th>
-                        <td>
-                            <input type="text" placeholder="예 : 오오토미 마나미">
+                        <td><textarea name="" id="" cols="30" rows="10" placeholder="예 : 지금까지의 이력, 배운것, 현재 수행 중인 프로젝트 등"></textarea>
                         </td>
                     </tr>
                 </table>

@@ -14,7 +14,66 @@
     font-size: 1.125rem;
     margin-bottom: 2rem;
 }
+input[type='text'],
+input[type='email'],
+input[type='url'],
+select,
+textarea {
+    border: 1px solid #bbb;
+    background: #fff;
+    padding: .5rem;
+    width: 100%;
+}
 input[type='text']::placeholder,
+input[type='email']::placeholder,
+input[type='url']::placeholder,
+textarea::placeholder{
+    color: #bbb;
+}
+input[type='checkbox']{
+    opacity: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    position: absolute;
+}
+
+input[type='checkbox'] + span::before{
+    display: inline-block;
+    content: '';
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 1px solid #bbb;
+    background: #fff;
+    margin:-.125rem .5rem 0 0;
+    vertical-align: middle;
+
+
+    font-family: 'Font Awesome 5 Pro', sans-serif;
+    font-weight: 900;
+    padding:0 2px;
+    line-height: 1.5;
+}
+input[type='checkbox']:checked + span::before{
+    content: '\f007';
+}
+label{
+    display: block;
+    margin-bottom: 1rem;
+}
+.select-box{
+    position: relative;
+}
+.select-box::after{
+    display: inline-block;
+    position: absolute;
+    top:.625rem;
+    right: 1rem;
+
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 900;
+    content: '\f078';
+    color: #bbb;
+}
 @media(min-width:600px){
     .home-hero{
         padding: 16vw 1rem;
@@ -24,9 +83,9 @@ input[type='text']::placeholder,
         font-size:2.5rem;
         margin: 0 0 2rem;
         background: none;
-        padding: none;
+
     }
     .home-hero p{
         width: 38vw;
-    };
+    }
 }
