@@ -101,6 +101,7 @@ font-family: 'Noto Sans KR', sans-serif;
     top: -10px;
     width: 80px;
     height: 80px;
+    
 }
 .post-date span {
     border-bottom: 2px rgba(255,255,255,.5) dotted;
@@ -109,6 +110,9 @@ font-family: 'Noto Sans KR', sans-serif;
     width: 60%;
     margin: 4px auto 0;
     font-size: 1rem;
+}
+article p{
+    line-height: 1.5rem;
 }
 .post-img {
     width: 100%;
