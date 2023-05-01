@@ -17,27 +17,41 @@
 }
 
 html,body{
-    height: 4000px;
     padding: 0;
     margin: 0;
     font-family: "Quicksand", sans-serif;
     scroll-behavior:smooth;
 }
+/*common*/
+.wrapper {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+img{
+    width: 100%;
+}
+h1,h2{
+    text-align: center;
+}
+h2{
+    font-size: 5rem;
+}
 header{
     width: 100%;
     background: var(--grey);
-    padding:0.5rem 0;
     position: fixed;
     left: 0;
     top:0;
     font-family: impact, sans-serif;
     z-index: 1;
 }
-
-.wrapper{
+/*header*/
+header .wrapper{
     width: 100%;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 .main-nav {
@@ -45,7 +59,7 @@ header{
     display: flex;
     align-items: center;
 }
-.main-nav li{
+.main-nav li {
     margin-right: 0.7rem;
     padding: 5px;
 }
@@ -59,18 +73,147 @@ header{
 }
 .wrapper a:hover{
     color: var(--blue);
-    transition-duration: 0.4s;
+    transition: 0.4s;
 }
 .btn-menu{
+    margin: 3px;
     border:1px solid var(--white);
     background: var(--grey);
     padding: 0.5rem 1rem;
     cursor: pointer;
     display: none;
+
+}
+/*hero*/
+#hero{
+    background-color: #4db1ec;
+    background-image: url("../Demo-Event/images/hero.jpg");
+    background-repeat: no-repeat;
+    background-position:center;
+    background-size:cover;
+    background-blend-mode: screen;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    animation: bg-color 24s infinite;
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+@keyframes bg-color {
+    0%{background-color: var(--light-blue)}
+    12.5%{background-color: var(--blue)}
+    25%{background-color: var(--purple)}
+    37.5%{background-color: var(--pink)}
+    50%{background-color: var(--orange)}
+    62.5%{background-color: var(--yellow)}
+    75%{background-color: var(--light-green)}
+    87.5%{background-color: var(--green)}
+    100%{background-color: var(--light-blue)}
+
+}
+#hero h1 {
+    font-size: 5.875rem;
+    margin-bottom: 1.5rem;
+}
+.hero-date {
+    text-align: center;
+    border-top: 3px solid var(--grey);
+    border-bottom: 3px solid var(--grey);
+    padding: .5rem 0;
+    font-size: 3rem;
+    margin:0 0 1.5rem;
+    word-spacing: -20px;
+    font-weight: bold;
+}
+#about{
+    padding:6rem 1rem;
+}
+#about h2{
+    background: linear-gradient(var(--yellow),var(--orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    margin: 0 0 2rem;
+}
+/*news*/
+#news{
+    background: linear-gradient(var(--light-green),var(--green));
+    padding: 5rem 0;
+    clip-path: polygon(0 0, 100% 10%, 100% 90%,0 100%);
+    color: var(--white);
+}
+.news-table{
+    width: 100%;
+}
+/*speakers*/
+#speakers{
+    padding : 4rem 0;
+}
+#speakers h2{
+    background: linear-gradient(var(--light-blue),var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.speakers-list{
+    display: flex;
+    flex-direction: row-reverse;
+    margin-bottom: 1rem;
+}
+.speakers-list img{
+    width: 20%;
+    border-radius: 50%;
+    margin: 1rem 2rem;
 }
 
+/*ticket*/
+#ticket{
+    background: linear-gradient(var(--pink),var(--purple));
+    padding: 3rem 1rem;
+    clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
+}
+#ticket h2{
+    color: var(--white);
+}
+.ticket-form{
+    max-width: 500px;
+    margin: 0 auto 4rem;
+}
+.ticket-form label{
+    display: block;
+    color: var(--white);
+}
+.ticket-field{
+    padding: 1rem;
+    width: 100%;
+    background: rgba(255,255,255,.6);
+    border: none;
+    outline: none;
+    margin-bottom: 1.3rem;
+}
+.ticket-field::placeholder{
+    font-size: 1rem;
+    font-weight: bold;
+}
+.ticket-btn{
+    font-size:1.2rem;
+    width: 100%;
+    padding:1.1rem;
+    border:none;
+    background: black;
+    color: var(--white);
+}
+.ticket-btn:hover{
+    background: var(--blue);
+    transition:.5s;
+}
+.footer{
+    border-top:1px solid var(--white);
+    text-align: center;
+    color:var(--white);
+    padding: 0 0 2rem;
+}
 @media (max-width: 600px) {
-    .wrapper{
+    header .wrapper{
         justify-content: space-between;
         padding:0 10px;
     }
@@ -79,7 +222,7 @@ header{
         width: 0;/* width가 0이여야 완전히 없어짐*/
         position: absolute;
         z-index: 2;
-        top: 44px;
+        top: 34px;
         right: 0;
         overflow: hidden;
         transition: .5s;
@@ -90,10 +233,21 @@ header{
         margin:1rem 0;
     }
     .btn-menu{
+
         display: block;
     }
     .main-nav.open-menu {
         width: 100%;
+    }
+    #hero h1{
+        font-size: 3.5rem;
+    }
+    .hero-date{
+        font-size: 1.5rem;
+        word-spacing: 0;
+    }
+    #about h2{
+        font-size: 3rem;
     }
 
 

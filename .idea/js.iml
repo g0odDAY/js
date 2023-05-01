@@ -7,5 +7,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="b8a7fea4d4" level="application" />
     <orderEntry type="library" name="all" level="application" />
+    <orderEntry type="library" name="aos" level="application" />
+    <orderEntry type="library" name="luminous-lightbox" level="application" />
   </component>
 </module>
