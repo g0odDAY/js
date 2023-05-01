@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+}
+
+.box {
+    display: flex;
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+p {
+    margin: 0;
+}
