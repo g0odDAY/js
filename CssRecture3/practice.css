@@ -19,7 +19,7 @@ li{
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+
 }
 /*header*/
 header{
@@ -59,29 +59,191 @@ header{
     align-items: center;
     justify-content: space-around;
 }
-.nav_menu{
+.main_menu{
     padding:0;
     margin: 0;
     display: flex;
     font-size: 1.4rem;
 }
-.nav_menu li{
+.main_menu li{
+    padding:1rem;
+    color:#949087;
+}
+.main_menu li:hover,
+.main_login:hover{
+    transition: 0.7s;
+    color: #8b5cf3;
+}
+.main_search input{
+    padding:0.5rem;
+    outline: none;
+    border: 2px solid #949087;
+    border-radius: 5px;
+}
+.main_search input::placeholder{
+    font-weight: bold;
+}
+
+.main_login{
+    color: #949087;
+    font-size: 1.4rem;
+    text-align: center;
+    width: 150px;
     padding:1rem;
 }
 
-.main_search{
-    vertical-align: middle;;
-}
-.main_login{
 
+#hero{
+    margin-top: 6rem;
+}
+#hero .wrapper{
+    padding: 0;
+}
+#hero img{
+    width: 100%;
+    object-fit: cover;
+}
 
+.calendar_header{
+    padding:0 1rem;
+    font-size: 1.4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-section{
-    background: #392152;
-    height: 1000px;
+.calendar_main{
+    border:2px solid #949087;
+    border-radius: 8px;
+    padding:1rem 2rem;
 }
-footer{
-    background: #ed2a61;
-    height: 100px;
+.calendar_selector ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+}
+.calendar_selector span{
+    display: block;
+    padding:0.4rem;
+}
+.calendar_content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.calendar_content_box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding:0.7rem;
+}
+.calendar_content_box_info{
+    display: flex;
+    align-items: end;
+}
+.calendar_island{
+    margin-top: 1.5rem;
+
+    display: flex;
+    justify-content: space-between;
+}
+.calendar_island_box{
+    background: #f5f6f7;
+    border-radius: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0.7rem;
+    margin-left: 0.8rem;
+}
+.calendar_island_box img{
+    object-fit: contain;
+}
+.island_reward{
+    margin-left: 1rem;
+    flex-grow: 1;
+}
+.island_reward label{
+    font-size: 0.8rem;
+    background: #7D839533;
+    padding:0.3rem;
+    border-radius: 3px;
+    color:#7D8395;
+}
+
+.island_reward_lists{
+    padding: 0;
+    margin: 0.5rem 0 0 0;
+    display: flex;
+}
+.island_reward_lists li{
+    margin-right: 5px;
+}
+#merchant{
+    margin-top: 2rem;
+}
+.merchant_box{
+    border:2px solid #949087;
+    border-radius: 5px;
+    padding:1.3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.merchant_title{
+    font-size: 1.4rem;
+}
+.merchant_content{
+    margin-left: 2rem;
+    font-size:1.1rem;
+    flex-grow: 1;
+    display:flex;
+    align-items: center;
+}
+.merchant_content span{
+    padding:0.5rem 1rem;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    color:#8045DD;
+    background: #8045DD42;
+    border-radius: 5px;
+}
+.merchant_content a:hover,
+.notice_lists a:hover{
+    text-decoration: underline;
+}
+
+.notice_content{
+    margin-top:2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.notice_box h3{
+    margin: 1.3rem 0 1.3rem 1rem;
+}
+.notice_lists{
+    width: 540px;
+    border:2px solid #949087;
+    padding:1rem 1.2rem;
+    border-radius: 5px;
+}
+.notice_lists li{
+    padding :1rem;
+}
+.notice_lists span{
+    font-weight: bold;
+    padding : 0.5rem 0.9rem;
+    border:1px solid #d0d0d0;
+    border-radius: 8px;
+}
+footer .wrapper{
+    border-top:1px solid #d0d0d0;
+}
+footer p{
+    padding:1rem;
+    font-size:0.7rem;
+    color: #949087;
 }
 
