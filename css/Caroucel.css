@@ -1,0 +1,53 @@
+.carousel {
+    width: 500px;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .slides {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease;
+  }
+  
+  .slide {
+    width: calc(100% / 3);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aqua;
+  }
+  
+  /* 화살표 버튼 */
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 30px;
+    height: 30px;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .carousel-btn-prev {
+    left: 20px;
+  }
+  
+  .carousel-btn-next {
+    right: 20px;
+  }
+  
+  /* 마우스 오버 시 버튼 스타일 */
+  .carousel-btn:hover {
+    background: #ddd;
+  }
+  
+  /* 첫 번째 슬라이드를 보이게 함 */
+  .slides {
+    transform: translateX(100);
+  }
+  

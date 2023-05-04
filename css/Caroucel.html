@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Caroucel.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="carousel">
+        <div class="slides">
+          <div class="slide">Slide 1</div>
+          <div class="slide">Slide 2</div>
+          <div class="slide">Slide 3</div>
+          <div class="carousel-btn">
+            <button class="carousel-btn-prev"><</button>
+            <button class="carousel-btn-next">></button>
+          </div>
+        </div>
+      </div>
+      .content{
+        width: 270px;
+        height:120px;
+    }
+    .inner{
+        white-space: nowrap;
+        transition: transform 0.5s;
+        display: flex;
+    }
+    .box{
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+    }
+    .box img{
+    
+    }
+    .box span{
+        position: absolute;
+        top: 75%;
+        right: 0;
+        color: var(--white);
+    }
+</body>
+</html>
