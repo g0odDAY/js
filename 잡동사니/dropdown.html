@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    body{
+        display:flex;
+        justify-content: center;
+        min-height: 100vh;
+        background: #f9f9f9;
+    }
+    .dropdown{
+        position:relative;
+        margin-top:100px;
+        width:300px;
+        height: 50px;
+    }
+    .dropdown::before{
+        content:'';
+        position:absolute;
+        top:25px;
+        right:28px;
+        width: 12px;
+        height:2px;
+        background:#555;
+        z-index:10;
+        transform: rotate(40deg);
+        transition: .5s;
+    }
+    .dropdown::after{
+        content:'';
+        position:absolute;
+        top:25px;
+        right:20px;
+        width: 12px;
+        height:2px;
+        background:#555;
+        z-index:10;
+        transform: rotate(-40deg);
+        transition: .5s;
+    }
+    .dropdown.active::before{
+        right: 20px;
+    }
+    .dropdown.active::after{
+        right: 28px;
+    }
+    .dropdown input{
+        position:absolute;
+        top:0;
+        left:0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        border-radius:10px;
+        padding:12px 10px;
+        font-size:1rem;
+        background:#fff;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        outline:none;
+        border:none;
+    }
+    .dropdown .option{
+        position:absolute;
+        width:100%;
+        background: #fff;
+        top:70px;
+        border-radius:10px;
+        box-shadow:0 30px 30px rgba(0,0,0,0.05);
+        overflow: hidden;
+        visibility:hidden;
+        opacity: 0;
+        transition:.25s;
+    }
+    .dropdown.active .option{
+        visibility:visible;
+        opacity:1;
+    }
+    .dropdown .option div{
+        padding:12px 20px;
+        cursor: pointer;
+    }
+    .dropdown .option div:hover{
+        background: #62baea;
+        color:#fff;
+    }
+</style>
+<body>
+    <div class="dropdown">
+        <input type="text" class="text02" readonly placeholder="dropdown">
+        <div class="option">
+            <div onmouseover="show('html')">html</div>
+            <div onmouseover="show('react')">react</div>
+            <div onmouseover="show('vue')">vue</div>
+            <div onmouseover="show('javascript')">javascript</div>
+            <div onmouseover="show('css')">css</div>
+        </div>
+    </div>
+</body>
+<script>
+    function show(a){
+        document.querySelector('.text02').value=a;
+    }
+    let dropdown = document.querySelector('.dropdown');
+    console.log(dropdown);
+    dropdown.onclick=function(){
+        dropdown.classList.toggle('active');
+    }
+</script>
+</html>
