@@ -64,7 +64,7 @@ const cntUniqueValues = (arr)=>{
 }
 console.log(cntUniqueValues([1,1,1,1,1,1,2,2,3,4,5]))
 console.log(cntUniqueValues([]))
-
+//슬라이딩 윈도우 기법
 const slidingWindow = (arr,number)=>{
     if(arr.length === 0) return null;
     let maxValue = 0;
@@ -73,7 +73,7 @@ const slidingWindow = (arr,number)=>{
     }
     let tempValue=maxValue;
     for(let i =number;i<arr.length-1;i++){
-        tempValue=tempValue - arr[i-number]+arr[i];
+        tempValue = tempValue - arr[i-number] + arr[i];
         console.log('tempValue',tempValue);
         maxValue = Math.max(maxValue,tempValue);
     }
@@ -151,3 +151,81 @@ console.log(isSubsequence('abc', 'acb')); // false
 console.log(isSubsequence('hello', 'hello world')); // true
 console.log(isSubsequence('sing', 'sting')); // true
 console.log(isSubsequence('abc', 'abracadabra')); // true
+console.clear();
+const maxSubarraySum = (arr,number)=>{
+    if(arr.length<number) return null;
+    let max = 0;
+    for(let i = 0;i<number;i++){
+        max+=arr[i];
+    }
+    let tmp = max;
+    for(let i = number;i<arr.length;i++){
+        tmp = tmp - arr[i-number] + arr[i];
+        max = Math.max(tmp,max);
+    }
+
+    return max;
+}
+maxSubarraySum([100,200,300,400], 2) // 700
+maxSubarraySum([1,4,2,10,23,3,1,0,20], 4)  // 39
+maxSubarraySum([-3,4,0,-2,6,-1], 2) // 5
+maxSubarraySum([3,-2,7,-4,1,-1,4,-2,1],2) // 5
+maxSubarraySum([2,3], 3) // null
+
+const minSubArrayLen = (arr,sum)=>{
+    let total = 0;
+    let start = 0;
+    let end = 0;
+    let minLen = Infinity;
+
+    while(start < arr.length){
+
+        if(total< sum && end < arr.length){
+            total += arr[end];
+            end++;
+        }else if(total >= sum){
+            minLen = Math.min(minLen,end-start);
+            total -=arr[start];
+            start++;
+        }else{
+            break;
+        }
+    }
+    return minLen === Infinity ? 0 : minLen;
+}
+minSubArrayLen([2,3,1,2,4,3], 7) // 2 -> because [4,3] is the smallest subarray
+minSubArrayLen([2,1,6,5,4], 9) // 2 -> because [5,4] is the smallest subarray
+console.log(minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52)) // 1 -> because [62] is greater than 52
+minSubArrayLen([1,4,16,22,5,7,8,9,10],39) // 3
+minSubArrayLen([1,4,16,22,5,7,8,9,10],55) // 5
+minSubArrayLen([4, 3, 3, 8, 1, 2, 3], 11) // 2
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10],95)) // 0
+console.clear();
+const findLongestSubstring = (str)=>{
+    let longest = 0;
+    let seen = {};
+    let start = 0;
+
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i];
+        // console.log('char = ',char);
+        if (seen[char]) {
+            start = Math.max(start, seen[char]);
+        }
+        // index - beginning of substring + 1 (to include current in count)
+        longest = Math.max(longest, i - start + 1);
+        // console.log('longest',longest);
+        // store the index of the next char so as to not double count
+        seen[char] = i + 1;
+        // console.log('seen[char]',seen[char]);
+         console.log('seen',seen);
+    }
+    return longest;
+}
+//findLongestSubstring('') // 0
+findLongestSubstring('rithmschool') // 7
+// findLongestSubstring('thisisawesome') // 6 isaweso
+// findLongestSubstring('thecatinthehat') // 7
+// findLongestSubstring('bbbbbb') // 1
+// findLongestSubstring('longestsubstring') // 8
+// findLongestSubstring('thisishowwedoit') // 6
