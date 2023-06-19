@@ -180,3 +180,73 @@ const nestedEvenSum = (obj,sum=0)=>{
 }
 console.log(nestedEvenSum(obj1));
 console.log(nestedEvenSum(obj2));
+const capitalizeWords = (arr)=>{
+    let result = [];
+    const helper = (arr)=>{
+        if(arr.length===0) return result;
+        result.push(arr[0].toUpperCase());
+        return helper(arr.slice(1));
+    }
+    helper(arr);
+    return result;
+
+}
+const words = ['hello', 'world', 'javascript'];
+console.log(capitalizeWords(words));
+console.clear();
+let obj3 = {
+    num: 1,
+    test: [],
+    data: {
+        val: 4,
+        info: {
+            isRight: true,
+            random: 66
+        }
+    }
+}
+const stringifyNumbers = (obj)=>{
+    let result = {};
+    for(let key in obj){
+        if(typeof obj[key] === 'number'){
+            result[key] = obj[key].toString();
+        }else if(typeof obj[key] === 'object' && !Array.isArray(obj[key]) ){
+            result[key] = stringifyNumbers(obj[key])
+        }else{
+            result[key] = obj[key];
+        }
+
+    }
+    return result;
+
+}
+console.log(stringifyNumbers(obj3));
+const obj4 = {
+    stuff: "foo",
+    data: {
+        val: {
+            thing: {
+                info: "bar",
+                moreInfo: {
+                    evenMoreInfo: {
+                        weMadeIt: "baz"
+                    }
+                }
+            }
+        }
+    }
+}
+
+const collectStrings = (obj)=>{
+    let result = [];
+    for(let key in obj){
+        if(typeof obj[key]==='string'){
+            result.push(obj[key]);
+        }else if(typeof obj[key] ==='object'){
+            result = result.concat(collectStrings(obj[key]));
+        }
+    }
+    return result;
+}
+console.log(collectStrings(obj4));
+
