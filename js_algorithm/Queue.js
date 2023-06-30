@@ -34,14 +34,13 @@ class Queue{
             removedNode.next = null;
         }
         this.size--;
-        return removedNode;
+        return removedNode.val;
     }
 }
 const queue = new Queue();
 queue.enqueue('dd')
-queue.enqueue('zz')
-queue.enqueue('qq')
-queue.enqueue('ll')
+
 console.log(queue.dequeue());
-console.log(queue.dequeue());
+
+
 console.log(queue);
